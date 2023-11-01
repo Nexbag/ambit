@@ -1,0 +1,81 @@
+@import "../../../utilities.module";
+.main {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  background: $bg;
+  color: $w;
+  div {
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+  }
+  .top {
+    position: relative;
+ 
+    flex-direction: column;
+    z-index: 2;
+    align-items: flex-start;
+    background: linear-gradient(to right, transparent 35%, colorWithOpacity($p, 0.1));
+    width: 100%;
+  text-align: center;
+    .display {
+      background-color: transparent;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      z-index: -1;
+      opacity: 0.2;
+      .img {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        img {
+          object-fit: cover;
+        }
+      }
+    }
+  .text{
+    flex-direction: column;
+    padding:10% 25% ;
+    gap: 15px;
+    h2 {
+      color: $p;
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+  }
+
+}
+
+@media screen and (max-width: 800px) {
+  @import "../../../utilities.module";
+  .main {
+    
+    .top {
+
+  
+      
+
+    .text{
+      padding: 10%;
+
+      h2 {
+        font-size: 1.8rem;
+      
+      }
+      p{
+        font-size: 0.9rem;
+      }
+    }
+     
+    }
+   
+  }
+}

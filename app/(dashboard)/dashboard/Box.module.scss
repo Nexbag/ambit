@@ -1,0 +1,346 @@
+@import "../../_utilities.module";
+.box {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: space-between;
+
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $bg;
+  color: $w;
+  // display: none;
+  > div {
+    width: 100%;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-size: 1.2rem;
+    }
+  }
+  font-size: 0.9rem;
+
+  flex-direction: column;
+  position: relative;
+
+  input,
+  textarea,
+  select {
+    background-color: transparent;
+    border: 1px solid colorWithOpacity($w, 0.7);
+
+    font-family: inherit;
+    padding: 3px 6px;
+    outline: none;
+    height: 50px;
+    color: inherit;
+    option {
+      color: $bg;
+    }
+    &::placeholder {
+      color: inherit;
+      opacity: 0.8;
+    }
+    &:focus {
+      border-bottom: 2px solid $w;
+    }
+  }
+  textarea {
+    height: 100px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+ 
+
+    > * {
+      width: 100%;
+    }
+    div {
+      display: flex;
+      align-items: center;
+
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    button {
+      margin-top: 30px;
+      width: 100%;
+      height: 50px;
+    }
+
+  }
+  .top {
+    flex-direction: column;
+    height: 20vh;
+    width: 100%;
+    justify-content: flex-start;
+
+    background-color: $bg;
+    box-shadow: 0 12px 32px colorWithOpacity($p, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: colorWithOpacity($w, 0.9);
+    }
+    > div {
+      width: 100%;
+    }
+
+    .first {
+      width: 100%;
+      background: colorWithOpacity($w, 0.1);
+
+      padding: 1.5% 5%;
+      justify-content: space-between;
+
+      height: 25%;
+
+      .logo {
+        height: 40px;
+        width: 100px;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        img {
+          object-fit: contain;
+        }
+      }
+    }
+    .price {
+      height: 30%;
+    }
+    .last {
+      height: 45%;
+      justify-content: space-between;
+      padding: 0px 5%;
+      gap: 20px;
+      a,
+      button {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        background: $p;
+        border-radius: 34px;
+        font-size: 0.9rem;
+        color: $w;
+        transition: 0.75s;
+        box-shadow: inset 0px 0px 8px colorWithOpacity($s, 0.4);
+        color: $bg;
+        &:hover {
+          box-shadow: inset 0px 0px 32px colorWithOpacity($s, 0.6);
+          border-radius: 24px;
+       
+        }
+      }
+      button{
+        background: $grad;
+      }
+    }
+  }
+
+  .center {
+    display: block;
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+   
+    background: linear-gradient(
+      25deg,
+      transparent 20%,
+      colorWithOpacity($p, 0.1),
+      transparent 80%
+    );
+    min-height: 100vh !important;
+   
+    .effect,.effect2{
+      position: fixed;
+  bottom: 35vh;
+  right: 85vw;
+      z-index: 1;
+      height: 400px;
+width: 400px; 
+     
+    }
+.effect2{
+  bottom: 5vh;
+  rotate: 90deg;
+  right: 0;
+}
+    .children{
+      display: block;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(8px);
+      padding: 25vh 5% 15vh;
+      h1 {
+        font-size: 2rem;
+        font-weight: 900;
+        font-family: var(--bold);
+        color: $p;
+      }
+      form{
+        h2,h1{
+          color: transparent;
+          background: $grad;
+          background-clip: text;
+        }
+      }
+  
+      img {
+        object-fit: contain;
+      }
+    }
+  
+  
+  }
+  .bottom {
+    height: 10vh;
+    padding: 6px 5%;
+    justify-content: space-between;
+    gap: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 8;
+    background-color: $bg;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      transition: 0.75s;
+      height: 100%;
+
+      background: $wgrad;
+      border-radius: 34px;
+      font-size: 0.8rem;
+color: $p;
+
+      .icon {
+        font-size: 1.5rem;
+      }
+      &:hover {
+       border-radius: 24px;
+      }
+    }
+  }
+  .bottom,
+  .top {
+    backdrop-filter: blur(12px);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .box {
+    .top {
+      height: 25vh;
+
+      font-size: 0.8rem;
+
+      .first {
+        gap: 10px;
+        .logo {
+          width: 80px;
+        }
+        h1 {
+          font-size: 0.8rem;
+          flex: 2;
+        }
+      }
+      .price {
+        height: 40%;
+      }
+      .last {
+        height: 40%;
+
+        gap: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 6px;
+
+        width: 100%;
+
+        a,
+        button {
+          height: 50%;
+          padding: 10px;
+          margin: 0;
+          // flex: unset;
+          min-width: 20%;
+          font-weight: 600;
+          font-size: 0.7rem;
+        }
+      }
+      .hideSome{
+     
+        >:nth-child(4),>:nth-child(6){
+          display: none;
+        }
+      }
+    }
+    .center {
+      .children{
+       padding: 28vh 5% 12vh;
+      h1 {
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0;
+      }
+     }
+     .effect,.effect2{
+      height: 200px;
+      width: 200px;
+     }
+     .effect{
+      height: 300px;
+      right: 70vw;
+     }
+    }
+    .bottom {
+      gap: 5px;
+      padding-left: 0;
+      padding-right: 60px;
+      a {
+        font-size: 0.6rem;
+        flex: 1;
+        overflow: hidden;
+      
+
+        .icon {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,173 @@
+@import "../../../utilities.module";
+
+.main {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: flex-start;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .center,
+  .left,
+  .right {
+    width: 32%;
+    p {
+      text-align: center;
+    }
+  }
+  .left {
+    gap: 40px;
+
+    .intro {
+      width: 100%;
+
+      .image {
+        width: 100%;
+        height: 30vh;
+        position: relative;
+        img {
+          object-fit: cover;
+          object-position: top;
+        }
+      }
+      .lower {
+        width: 100%;
+        div {
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 10px;
+          align-items: center;
+          > * {
+            flex: 1;
+          }
+
+          .icons {
+            justify-content: flex-start;
+            font-size: 0.8rem;
+            > * {
+              flex: unset;
+            }
+          }
+        }
+      }
+    }
+    .balances {
+      gap: 30px;
+      width: 100%;
+
+      div {
+        background: $grad;
+        width: 100%;
+        gap: 10px;
+        padding: 24px;
+        color: $bg;
+        * {
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+  .center,
+  .right {
+    gap: 40px;
+
+    .stats {
+      flex-direction: row;
+      gap: 20px;
+      flex-wrap: wrap;
+      div {
+        min-width: 45%;
+        flex: 1;
+        background:$wgrad;
+        padding: 5% 2.5%;
+      }
+    }
+    .transactions,
+    .investments {
+      width: 100%;
+      gap: 30px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      > p {
+        width: 100%;
+        margin: 0;
+      }
+      > div {
+        min-width: 45%;
+        flex: 1;
+        background-color: colorWithOpacity($w, 0.1);
+        padding: 5% 2.5%;
+        gap: 10px;
+        div {
+          width: 100%;
+          justify-content: space-between;
+          p {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    flex-direction: column;
+    gap: 50px;
+    .center,
+    .left,
+    .right {
+      width: 100%;
+    }
+    .left {
+      gap: 40px;
+
+      .intro {
+        .image {
+          height: 20vh;
+        }
+        .lower {
+          align-items: flex-start;
+          h2 {
+            text-align: left;
+          }
+        }
+      }
+      .balances {
+        gap: 15px;
+
+        div {
+          padding: 12px;
+        }
+      }
+    }
+    .center,
+    .right {
+      .transactions,
+      .investments {
+        width: 100%;
+        > div {
+          min-width: 45%;
+          flex: 1;
+          background-color: colorWithOpacity($w, 0.2);
+          padding: 5% 2.5%;
+          gap: 10px;
+          div {
+            width: 100%;
+            justify-content: space-between;
+            p {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

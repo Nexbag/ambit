@@ -1,0 +1,48 @@
+.main {
+  display: flex;
+
+  align-items: flex-start;
+  gap: 50px;
+  width: 100%;
+ 
+
+  .table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    overflow-x: auto;
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: max-content;
+      gap: 10px;
+      > * {
+        width: 150px;
+      }
+
+      div {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+  .right,
+  .left {
+    flex: 1;
+  }
+}
+@media screen and (max-width: 800px) {
+  .main {
+    flex-direction: column;
+    .right,
+    .left {
+      flex: unset;
+      width: 100%;
+      > * {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}

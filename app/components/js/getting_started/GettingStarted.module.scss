@@ -1,0 +1,74 @@
+@import "../../../utilities.module";
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  gap: 50px;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(45deg,colorWithOpacity($p,0.2),$bg 45%, $bg,colorWithOpacity($p,0.4));
+  position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: $bg;
+  }
+  color: $w;
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    text-align: center;
+  }
+  .steps {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    width: 100%;
+    font-size: 0.9rem;
+
+    .step {
+      min-width: 30%;
+      flex: 1;
+      background: $wgrad;
+    
+    
+      padding: 5%;
+      align-items: flex-start;
+
+      ul {
+        padding: 14px;
+        li {
+          margin-top: 10px;
+        }
+      }
+      a {
+       
+        color: $bg;
+        padding: 10px 24px;
+        border-radius: 3px;
+        margin: 14px 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    padding: 15% 10%;
+    .steps {
+      flex-direction: column;
+      .step {
+        min-width: 100%;
+      }
+    }
+  }
+}

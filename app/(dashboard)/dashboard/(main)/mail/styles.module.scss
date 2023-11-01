@@ -1,0 +1,25 @@
+@import "../../../../utilities.module";
+.main {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    gap: 10px;
+  }
+  form {
+    padding: 2.5%;
+    border: 2px solid $p;
+  }
+}
+@media screen and (max-width: 800px) {
+  .main {
+    .col {
+      width: 100%;
+    }
+  }
+}

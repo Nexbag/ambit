@@ -1,0 +1,151 @@
+@import "../../../../utilities.module";
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  p,
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    > * {
+      width: 100%;
+    }
+  }
+  .iRow {
+    display: flex;
+
+    align-items: center;
+    margin: 3px 0;
+    gap: 10px;
+    justify-content: space-between;
+    border: 1px solid var(--p);
+    border-radius: 6px;
+
+    padding: 12px 6px;
+    > * {
+      flex: 1;
+    }
+  }
+  .container {
+    display: flex;
+    align-items: flex-start;
+
+    width: 100%;
+    gap: 50px;
+    > * {
+      flex: 1;
+    }
+  }
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    margin: 0 25%;
+    gap: 50px;
+  }
+  form {
+    padding: 2.5%;
+    border: 2px solid $p;
+  }
+  .fRow {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    overflow-x: auto;
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: max-content;
+      gap: 10px;
+      > * {
+        width: 150px;
+      }
+
+      div {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+  .grid {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .plan {
+    width: 23%;
+    padding: 2.5%;
+    background-color: colorWithOpacity($w, 0.1);
+
+    .under {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+
+      div {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        justify-content: space-between;
+        > * {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+   
+    .container {
+      flex-direction: column;
+    }
+    .box {
+      width: 100%;
+      margin: 0;
+    }
+    // .table {
+    //   .row {
+    //     > * {
+    //       width: 150px;
+    //     }
+    //   }
+    // }
+    .grid {
+      flex-direction: column;
+      gap: 40px;
+    }
+    .plan {
+      width: 100%;
+    }
+  }
+}

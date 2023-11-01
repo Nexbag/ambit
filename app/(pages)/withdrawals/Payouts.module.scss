@@ -1,0 +1,26 @@
+.overview {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+
+  color: var(--white);
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 20%;
+  .container {
+    height: 600px;
+    width: 400px;
+  }
+  iframe {
+    height: 100%;
+    width: 100%;
+    overflow: hidden !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .overview {
+    padding: 5%;
+  }
+}

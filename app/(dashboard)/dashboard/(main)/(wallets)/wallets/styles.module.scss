@@ -1,0 +1,45 @@
+@import "../../../../../utilities.module";
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  padding: 2.5%;
+  p,
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    overflow-x: auto;
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: max-content;
+      gap: 10px;
+      > * {
+        width: 150px;
+      }
+
+      div {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    padding: 2.5%;
+  }
+}

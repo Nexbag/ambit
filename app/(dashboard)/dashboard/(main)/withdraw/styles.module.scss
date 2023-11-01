@@ -1,0 +1,36 @@
+@import "../../../../utilities.module";
+.main {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+    > * {
+      width: 100%;
+      display: block;
+      overflow-wrap: break-word;
+      margin: 0;
+    }
+  }
+  form {
+    width: 50%;
+    padding: 2.5%;
+    border: 2px solid $p;
+  }
+}
+@media screen and (max-width: 800px) {
+  .main {
+    form {
+      width: 100%;
+      p {
+        width: 100%;
+        overflow-wrap: break-word;
+      }
+    }
+  }
+}

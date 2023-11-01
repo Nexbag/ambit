@@ -1,0 +1,242 @@
+@import "../../utilities.module";
+.nav {
+  display: flex;
+  width: 100vw;
+  z-index: 99;
+  position: relative;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: $bg;
+  box-shadow: 0 16px 16px colorWithOpacity($bg, 0.05);
+  flex-direction: column;
+  color: $w;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  a{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    padding: 0 24px;
+    border: 2px solid $p;
+    transition: 0.75s;
+    &:hover {
+      background-color: $p;
+    color: $bg;
+
+    
+    }
+ 
+  }
+
+  .top {
+    width: 100%;
+    justify-content: space-between;
+    padding: 12px calc(5% + 24px);
+    .logoGroup {
+      width: 30%;
+      position: relative;
+      height: 60px;
+      width: 150px;
+      .logo {
+        position: relative;
+        border: none;
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      .menuIcon {
+        display: none;
+      }
+    }
+    .lower {
+      gap: 15px;
+      a {
+        border-radius: 24px;
+      }
+
+      .trans {
+        color: $p;
+        font-size: 2rem;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+   
+        padding:10px 24px 0px;
+margin: 0;
+        
+      }
+      >:nth-child(2){
+        background: $grad;
+        color: $bg;
+        border: none;
+            }
+    }
+  }
+  .center {
+    width: 100%;
+    .upper {
+      width: 100%;
+      justify-content: space-between;
+      padding: 12px 5%;
+      font-weight: 500;
+
+      text-transform: uppercase;
+
+     background-color: colorWithOpacity($w,0.1);
+     gap: 15px;
+      a {
+        border: none;
+     
+        border-radius: 6px;
+        flex: 1;
+        &:hover {
+          background-color: colorWithOpacity($w, 0.1);
+          color: $w;
+       
+        }
+      }
+    }
+  }
+  .bottom {
+    width: 100%;
+    height: 50px;
+  }
+}
+
+//sm
+//sm
+//sm
+
+@media screen and (max-width: 800px) {
+  .nav {
+  
+    a {
+      display: flex;
+      justify-content: center;
+      height: unset;
+      align-items: center;
+      padding: 0px;
+      border: none;
+
+      transition: 0.75s;
+      &:hover {
+        background-color: transparent;
+     
+      }
+    }
+
+    .top {
+      width: 100%;
+      padding: 0;
+      padding-top: 12px;
+      flex-direction: column;
+      z-index: 5;
+    
+      position: relative;
+      background-color: $bg;
+
+      &::before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(230deg, $bg, colorWithOpacity($p, 0.1));
+        display: block;
+
+        position: absolute;
+        top: 0;
+      }
+      > * {
+        z-index: 2;
+      }
+      .logoGroup {
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding: 0 5%;
+        .logo {
+          height: 60px;
+          width: 150px;
+        }
+        .menuIcon {
+          display: block;
+          font-size: 2rem;
+          color: $p;
+        }
+      }
+      .lower {
+        gap: 15px;
+        width: 100%;
+        justify-content: space-between;
+       
+        gap: 15px;
+        padding: 12px;
+        .trans {
+          font-size: 1.5rem;
+     
+          height: 40px;
+        }
+        a {
+          height: 40px;
+          background-color: colorWithOpacity($w, 0.2);
+          color: $w;
+          flex: 1;
+          border-radius: 6px;
+        }
+      }
+    }
+    .center {
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+
+      top: 148px;
+      left: 0;
+      z-index: 1;
+     
+      overflow-y: auto;
+      transition: 0.75s;
+
+      .upper {
+        text-transform: uppercase;
+
+        background-color: $bg;
+        gap: 15px;
+        flex-direction: column;
+        padding: 10%;
+        a {
+      
+
+
+          color: $p;
+          width: 100%;
+          background-color: colorWithOpacity($w, 0.05);
+         
+          border-radius: 6px;
+       
+      padding: 12px;
+        }
+      }
+    }
+    .hide {
+      top: -90vh;
+    }
+    .bottom {
+      position: fixed;
+      bottom: 2.5px;
+      background-color: colorWithOpacity($bg, 0.9);
+      backdrop-filter: blur(12px);
+      height: 80px;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import "../../../utilities.module";
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 10%;
+  background-color: $bg;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  .seen{
+    color: colorWithOpacity($w,0.6);
+    font-size: 1.5rem;
+  }
+  .right{
+    width: 100%;
+  gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  .image {
+    position: relative;
+    height: 80px;
+    width: 180px;
+   
+    img{
+      object-fit: contain;
+    }
+
+  }
+}
+
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+   
+    .right {
+      flex-wrap: wrap;
+      .image{
+        width: 45%;
+      height: 70px;
+      }
+    }
+  }
+}

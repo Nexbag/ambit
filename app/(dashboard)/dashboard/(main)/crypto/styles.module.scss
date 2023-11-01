@@ -1,0 +1,115 @@
+@import "../../../../utilities.module";
+
+.main {
+  display: flex;
+
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  padding: 2.5% 0;
+  .box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    .exchange {
+      width: 100%;
+      padding: 2.5%;
+      border: 2px solid $p;
+      h2 {
+        margin-bottom: 30px;
+      }
+      .actions {
+        display: flex;
+        width: 100%;
+
+        align-items: stretch;
+        justify-content: space-between;
+        button {
+          width: 46%;
+        }
+      }
+    }
+    .wallets {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 40px;
+      .wallet {
+        display: flex;
+        align-items: 100%;
+        align-items: center;
+        background: $wgrad;
+        gap: 10px;
+        padding: 2.5%;
+        border-radius: 32px;
+        border-bottom: 4px solid colorWithOpacity($w, 0.1);
+        * {
+          margin: 0;
+          padding: 0;
+        }
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          font-size: 0.9rem;
+          div {
+            flex-direction: row;
+          }
+          .info {
+            color: $p;
+          }
+        }
+        .img {
+          overflow: hidden;
+          border-radius: 50%;
+          img {
+            object-position: center;
+            object-fit: cover;
+          }
+        }
+        .value {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}
+.layout {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    flex-direction: column;
+    .box {
+      flex: unset;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .wallets {
+        margin-top: 30px;
+        .wallet {
+          .value {
+            margin-left: 10px;
+          }
+          .value,
+          .details {
+            width: 33%;
+            font-size: 0.85rem;
+            h3 {
+              font-size: 0.7rem;
+            }
+            h2 {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

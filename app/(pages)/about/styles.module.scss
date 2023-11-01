@@ -1,0 +1,174 @@
+@import "../../utilities.module";
+.about {
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  padding-bottom: 0px;
+  font-size: 0.9rem;
+  background: $bg;
+  color: colorWithOpacity($w,0.8);
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  section {
+    margin-bottom: 50px;
+    padding: 0 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-self: center;
+    text-align: center;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  h2{
+    color: transparent;
+    background: $grad;
+    background-clip: text;
+  }
+  .grid {
+    flex-wrap: wrap;
+    gap: 40px;
+    width: 100%;
+    margin: 100px 0;
+    align-items: stretch;
+    h2 {
+      width: 100%;
+      display: block;
+      
+      padding: 12px;
+    
+      text-align: center;
+    }
+    div {
+      flex-direction: column;
+      gap: 20px;
+      width: 30%;
+      background-color: colorWithOpacity($w, 0.1);
+      padding: 5%;
+      .icon {
+        font-size: 4rem;
+      }
+    }
+  }
+  .subsidiaries {
+    flex-direction: column;
+  
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+    padding: 10%;
+    text-align: center;
+    .group {
+      margin: 0;
+      width: 100%;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: stretch;
+      div {
+        width: 30%;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.8rem;
+        gap: 10px;
+        padding: 5%;
+        background: $wgrad;
+        >:first-child{
+          font-weight: bold;
+        }
+
+       >:last-child{
+        margin-top: 50px;
+       }
+      }
+    }
+  }
+  .cert {
+    height: 100vh;
+    width: 100%;
+    margin: 5% 0;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    .img {
+      height: 90%;
+      width: 100%;
+      position: relative;
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10% 30%;
+    gap: 50px;
+    font-size: 0.9rem;
+    text-align: center;
+    > div {
+      width: 100%;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .text {
+      gap: 15px;
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .about {
+    padding: 10%;
+    section {
+      padding: 5% 0;
+    }
+
+    .grid {
+      flex-direction: column;
+      align-items: center;
+      div {
+        width: 100%;
+        padding: 10%;
+      }
+    }
+    .subsidiaries {
+      padding: 10% 0;
+      .group {
+        flex-direction: column;
+        div {
+          width: 100%;
+          padding: 10%;
+          
+        }
+      }
+    }
+    .cert {
+      height: 60vh;
+    }
+  }
+  .main {
+    .container {
+      padding: 10% 15%;
+    }
+  }
+}

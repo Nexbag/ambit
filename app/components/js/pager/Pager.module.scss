@@ -1,0 +1,63 @@
+@import "../../../utilities.module";
+.controllers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 12px 0px;
+  padding: 6px 5%;
+  position: relative;
+  border-radius: 12px;
+  background-color: $p;
+  color: $w;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .pages {
+    z-index: 50;
+    span {
+      width: 30px;
+      height: 30px;
+      background-color: $bg;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+  .hide {
+    display: none;
+  }
+  .movers {
+    position: absolute;
+    width: 95%;
+    justify-content: space-between;
+    span {
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .controllers {
+    padding: 6px;
+    .pages {
+      gap: 2.5px;
+      span {
+        font-size: 0.8rem;
+        height: 25px;
+        width: 25px;
+      }
+    }
+    .movers {
+      width: 100%;
+    }
+  }
+}

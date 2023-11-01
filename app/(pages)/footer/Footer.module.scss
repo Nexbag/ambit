@@ -1,0 +1,136 @@
+@import "../../utilities.module";
+.footer {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+
+  gap: 40px;
+  padding-top: 40px;
+  flex-direction: column;
+
+  background-color: $bg;
+  color: $w;
+  font-size: 0.9rem;
+  font-weight: 500;
+;
+
+  div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .top {
+    flex-direction: row;
+    width: 100%;
+    padding: 2.5% 10%;
+    gap: 20px;
+    align-items: flex-start;
+    .company {
+      position: relative;
+      flex: 3;
+      display: flex;
+      gap: 10px;
+
+      .logo {
+        position: relative;
+        height: 60px;
+        width: 100px;
+        img {
+          object-fit: contain;
+        }
+      }
+      p {
+   
+        font-size: 0.85rem;
+        padding-right: 5%;
+        text-align: left;
+      }
+    }
+    .links {
+      flex: 2;
+      gap: 5px;
+      p {
+        margin: 0;
+
+        font-weight: bold;
+      }
+      ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        flex-direction: column;
+      }
+    }
+  }
+  .copy {
+    width: 100%;
+    padding: 15px 10%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+
+    .socials {
+      flex-direction: row;
+      gap: 10px;
+
+      font-size: 1.2rem;
+      a {
+        cursor: pointer;
+        transition: 0.5s;
+        color: $p;
+        &:hover {
+          color: $s;
+        }
+      }
+    }
+  }
+}
+.box {
+  width: 100%;
+  display: block;
+  position: relative;
+  z-index: 100;
+  background-color: $bg;
+  padding: 24px;
+}
+
+//sm devices
+//sm devices
+//sm devices
+
+@media (max-width: 800px) {
+  .footer {
+    flex-direction: column;
+    font-size: 1rem;
+    align-items: center;
+    text-align: center;
+
+    .top {
+      flex-direction: column;
+      gap: 20px;
+      div,
+      ul {
+        align-items: flex-start;
+        text-align: left;
+      }
+      .company,
+      .links {
+        flex: unset;
+      }
+      .company {
+        p {
+
+          padding: 0;
+        }
+      }
+    }
+    .copy {
+      font-size: 0.9rem;
+      padding: 25px 5%;
+      flex-direction: column-reverse;
+      gap: 10px;
+    }
+  }
+}
