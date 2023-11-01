@@ -14,7 +14,7 @@ const fetchData = async () => {
 export default async function Page() {
   const plans = await fetchData();
   const data: TopperType = {
-    img: "/assets/hall2.png",
+   
     text: ["Calculate your investment returns here"],
     title: "Plan Calculator",
   };
