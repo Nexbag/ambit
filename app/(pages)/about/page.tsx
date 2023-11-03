@@ -14,14 +14,14 @@ import Listed from "@/app/components/js/listed/listed";
 
 export const metadata: Metadata = {
   title: `About ${COMPANYNAME}`,
-  description: `Amber Trade is a digital platform that facilitates cryptocurrency trading, mining and investment opportunities for individuals and investors interested in cryptocurrencies.`,
+  description: `Amber Trade is a digital platform that facilitates cryptocurrency trading, mining and investment opportunities involving stock exchange, gold trading, real estate and infrastructure for individuals and corporate bodies.`,
 };
 
 export default function About() {
   const top: TopperType = {
 
     text: [
-      `Amber Trade is a digital platform that facilitates cryptocurrency trading, mining and investment opportunities for individuals and investors interested in cryptocurrencies. The platform offers a range of investment plans designed to allow users to invest their capital into cryptocurrency mining operations.`,
+      `Amber Trade is a digital platform that facilitates cryptocurrency trading, mining and investment opportunities involving stock exchange, gold trading, real estate and infrastructure for individuals and corporate bodies. The platform offers a range of investment plans designed to maximize profits.`,
     ],
     title: `About ${COMPANYNAME}`,
   };
@@ -34,7 +34,7 @@ export default function About() {
     {
       icon: TbBrand4Chan,
       title: "Comprehensive Services",
-      text: "We offer a wide range of financial services to cater to all your needs. Whether you want to invest, mine, store and send cryptocurrencies, we've got you covered.",
+      text: "We offer a wide range of financial services to cater to all your needs. Whether you into cryptocurrencies (mining, storage and trading), real estate, stock or gold business we've got you covered.",
     },
     {
       icon: BsLightning,
@@ -59,11 +59,11 @@ export default function About() {
   ];
 
 const history:string[]=[
-  "Since its inception in 2016 (Reg No.: 2366506), Amber Trade Limited has been at the forefront of the ever-evolving landscape of digital investments. Established as a subsidiary of the renowned Amber Group, our journey began with a sharp focus on forex trading. With a dedicated team of experts and a commitment to excellence, we swiftly established ourselves as a leading force in the financial markets.",
-  "As the world of finance continued to undergo a paradigm shift, we recognized the immense potential of cryptocurrency trading. Leveraging our expertise and experience, we seamlessly transitioned into the realm of digital assets. This pivotal move marked a significant milestone in our journey, propelling us into a dynamic era of innovation and groundbreaking opportunities.",
-  "Our contributions to the development of life-changing cryptocurrency projects are a testament to our unwavering commitment to driving technological advancements. From our early support of Solana to our involvement in numerous other groundbreaking initiatives, we have consistently fostered an environment conducive to transformative advancements in the crypto sphere.",
-  "At Amber Trade, we have embraced cutting-edge technology, providing us with a distinct advantage in crypto mining and precise price predictions. Our dedicated team of technologists continuously explores the latest advancements, ensuring that we remain at the forefront of technological innovation in the crypto investment landscape.",
-  "As we reflect on our journey so far, we remain steadfast in our dedication to pioneering the future of crypto investment. With an unwavering commitment to excellence and a relentless pursuit of innovation, we continue to redefine the boundaries of what's possible in the world of digital finance. Join us on this exciting journey and be a part of the future of crypto with Amber Trade."
+  "Since its establishment in 2016 as a subsidiary of the esteemed Amber Group, Amber Trade Limited has consistently expanded its horizons, evolving from its initial focus on forex trading to become a multi-faceted powerhouse in the global financial landscape. With a comprehensive suite of services that now includes gold trading, stock exchange investments, and real estate and infrastructure development, Amber Trade has solidified its position as a leader of diversified investments.",
+  "As we continued to undergo a paradigm shift, we recognized the immense potential of cryptocurrency trading. Leveraging our expertise and experience, we seamlessly transitioned into the realm of digital assets. This pivotal move marked a significant milestone in our journey, propelling us into a dynamic era of innovation and groundbreaking opportunities.",
+  "Our foray into gold trading has been marked by a commitment to transparency and strategic foresight, providing clients with unparalleled access to the lucrative and ever-evolving gold market. Simultaneously, our active engagement in the stock exchange has empowered investors with tailored portfolio management strategies, ensuring sustainable financial growth and long-term value creation.",
+  "Our dedication to fostering sustainable communities and driving economic development is reflected in our involvement in real estate and infrastructure projects. Through strategic investments and a focus on innovation, Amber Trade has played a pivotal role in the development of sustainable real estate projects, contributing to the creation of robust infrastructure that serves as a cornerstone for growth and progress in local and international communities. As we continue to expand our diverse portfolio, we remain committed to upholding our values of integrity, excellence, and transformative impact in every sector we operate in.",
+  "As we reflect on our journey so far, we remain steadfast in our dedication to pioneering the future of digital investment. With an unwavering commitment to excellence and a relentless pursuit of innovation, we continue to redefine the boundaries of what's possible in the world of digital finance. Join us on this exciting journey and be a part of the future of crypto with Amber Trade."
 ]
 const subsidiaries:{name:string;text:string;reg:string}[]=[
   {
@@ -117,7 +117,7 @@ reg:"License No. PS20200502"
         </section>
         <section>
           <h2>Our Mission</h2>
-          <p>{`At ${COMPANYNAME}, our mission is to revolutionize cryptocurrency by harnessing the power of cutting-edge technology to provide our customers with unparalleled financial solutions. We are committed to building trust, delivering excellence, and empowering individuals and businesses to achieve their financial goals. Through innovation, transparency, and a relentless focus on customer-centric solutions, we aspire to be your number one platform for profitable investments.`}</p>
+          <p>{`At ${COMPANYNAME}, our mission is to redefine the landscape of financial opportunities by harnessing cutting-edge technology in cryptocurrency, stock exchange, gold trading, and real estate. Committed to fostering trust and delivering excellence, we empower individuals and businesses to achieve their financial objectives across diverse investment avenues. Through innovation, transparency, and a customer-centric approach, we strive to be the go-to platform for profitable and sustainable investments, offering comprehensive solutions for financial growth and prosperity.`}</p>
 
           <div className="links">
             <Link href={"/about/compliance_policy"} className="action">
@@ -137,7 +137,7 @@ reg:"License No. PS20200502"
         </div>
         <section>
           <h2>Our Vision</h2>
-          <p>{`Our vision at ${COMPANYNAME} is to be a trailblazing force in the financial industry, setting new standards of excellence through technology-driven mining. We aim to create a seamless, secure, and personalized investment experience for every customer, while fostering financial inclusion and economic growth. By consistently pushing the boundaries of innovation and upholding the highest ethical standards, we aspire to be the catalyst for positive change in the lives of our customers, employees, and communities we serve. `}</p>
+          <p>{`Our vision at ${COMPANYNAME} is to be a trailblazing force in the financial industry, setting new standards of excellence through technology-driven insights. We aim to create a seamless, secure, and personalized investment experience for every customer, while fostering financial inclusion and economic growth. By consistently pushing the boundaries of innovation and upholding the highest ethical standards, we aspire to be the catalyst for positive change in the lives of our customers, employees, and communities we serve. `}</p>
           <h3>{`A Promising Future`}</h3>
           <p>{`Looking ahead, Amber Trade remains steadfast in its mission to empower clients with the financial tools they need to thrive. The company's commitment to innovation, security, and transparency continues to drive its success as it explores new horizons in the ever-evolving world of finance.`}</p>
         </section>

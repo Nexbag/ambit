@@ -35,6 +35,10 @@ const Nav: React.FC = () => {
       link: "/about",
     },
     {
+      text: "Business Overview",
+      link: "/business_overview",
+    },
+    {
       text: "Investment",
       link: "/investments",
     },
@@ -51,10 +55,7 @@ const Nav: React.FC = () => {
       text: "Sustainability",
       link: "/sustainability",
     },
-    {
-      text: "Overview",
-      link: "/overview",
-    },
+  
     {
       text: "Contact Us",
       link: "/help",

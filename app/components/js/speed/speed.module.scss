@@ -32,7 +32,7 @@ padding: 10%;
   flex-wrap: wrap;
   gap: 40px;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: stretch;
   .key{
     gap: 20px;
     width: 30%;
@@ -40,6 +40,7 @@ padding: 10%;
     font-size: 0.9rem;
     text-align: center;
     align-items: center;
+    justify-content: flex-start;
     background: linear-gradient(to right,colorWithOpacity($w,0.1),transparent,colorWithOpacity($w,0.05));
   padding: 12px 0;
     p{

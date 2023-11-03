@@ -10,14 +10,14 @@ const Carousel: React.FC = () => {
   const texts:{title:string;texts:string[]}[]=[
     {
       title:`Trade with Confidence`,
-      texts:["Join our global community of investors to invest and trade with confidence in the volatile yet lucrative world of cryptocurrency, forex, and stocks."]
+      texts:["Join our global community of investors to invest and trade with confidence in profitable cryptocurrency, forex, stocks, gold, and real estate investments."]
     },
     {
       title:`Global Reach, Local Expertise`,
       texts:["With a presence in over 150 countries, Amber Trade combines global reach with local expertise to provide tailored investment solutions for every market."]
     },
     {
-      title:` Institutional Partnerships, Superior Results`,
+      title:`Institutional Partnerships, Superior Results`,
       texts:["Our trusted partnerships with over 1,000 institutional clients ensure superior investment results and secure financial growth strategies."]
     },
     {
@@ -32,7 +32,8 @@ const Carousel: React.FC = () => {
       title:`Secure Investments, Trusted Platform`,
       texts:["At Amber Trade, we prioritize security and reliability, ensuring a trusted platform for all your investment needs, backed by industry-leading security measures."]
     },
-  ]
+]
+
   useCarousel({parentId:"content",indicatorId:"indicator"})
   return (
     <div className={styles.holder}>

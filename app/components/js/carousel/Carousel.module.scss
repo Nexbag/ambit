@@ -132,7 +132,7 @@ translate: -100vw 0px;
 
 @media screen and (max-width: 800px) {
   .holder {
-    // height: calc(80vh - 120px);
+    height: 90vh;
     .carousel {
       justify-content: flex-end;
       align-items: flex-start;

@@ -19,66 +19,53 @@ export default async function Page() {
   const data: TopperType = {
     title: "Your Trusted Partner for Smart Investments",
     text: [
-      "We empower you to take control of your financial future through cryptocurrency mining. Discover how you can potentially grow your wealth by investing with us.",
-      "At Amber Trade, we combine expertise, innovation, and a commitment to excellence to offer you investment opportunities in cryptocurrency mining.",
+      "We empower you to take control of your financial future through our diversified investment portfolio. Discover how you can potentially grow your wealth by investing with us.",
+      "At Amber Trade, we combine expertise, innovation, and a commitment to excellence to offer you success-proven investment opportunities.",
     ],
    
   };
   const texts: { title: string; texts: string[] }[] = [
     {
-      title: "Acquisition of Mining Hardware",
+      title: "Diversified Portfolio Management",
       texts: [
-        "Amber Trade invests in specialized hardware known as mining rigs. These rigs are equipped with powerful processors (such as ASICs or GPUs) that are specifically designed to perform the complex calculations required for cryptocurrency mining. The company may also invest in other infrastructure such as cooling systems and secure facilities to support the mining operations.",
+        "Amber Trade strategically diversifies investments across multiple asset classes, including cryptocurrencies, stocks, gold, and real estate. By carefully managing asset allocation, we aim to optimize returns while minimizing risks for our clients.",
       ],
     },
     {
-      title: "Network Participation",
+      title: "Data-Driven Investment Decisions",
       texts: [
-        "The cryptocurrency mining process involves validating and adding new transactions to the blockchain ledger. Miners compete to solve complex mathematical puzzles, and the first one to solve it gets the opportunity to add a new block of transactions to the blockchain.",
+        "Our team of expert analysts and data scientists conducts comprehensive market research and analysis, leveraging advanced data analytics and technology to make informed investment decisions that drive profitable outcomes.",
       ],
     },
     {
-      title: "Proof-of-Work (PoW)",
+      title: "Strategic Positioning in Cryptocurrency",
       texts: [
-        `Many cryptocurrencies, including Bitcoin, use a consensus mechanism called Proof-of-Work (PoW). In PoW, miners must demonstrate that they have expended computational power to solve these puzzles. This proof is known as a "proof-of-work."`,
+        "With a profound understanding of the cryptocurrency market, Amber Trade leverages market volatility and growth potential. Our experienced traders and advanced algorithms enable us to strategically position investments for maximum returns while effectively managing associated risks.",
       ],
     },
     {
-      title: "Transaction Fees and Block Rewards",
+      title: "Value-Based Stock Investments",
       texts: [
-        `Miners are rewarded for their efforts in two ways:`,
-        `a. ransaction Fees: Users of the cryptocurrency pay fees when making transactions. These fees are collected by miners when they include a transaction in a block.`,
-        `b. Block Rewards: In addition to transaction fees, miners receive a reward in the form of newly created cryptocurrency coins. This is often referred to as the "block reward." The reward amount and issuance schedule vary depending on the cryptocurrency.`,
+        "Amber Trade identifies undervalued stocks and promising companies through meticulous research and fundamental analysis. Our investment experts closely monitor market trends, ensuring that our clients benefit from investment opportunities aligned with their financial goals.",
       ],
     },
     {
-      title: "Mining Pools",
+      title: "Optimized Gold Trading Strategies",
       texts: [
-        `Cryptocurrency mining can be highly competitive, and it may take a considerable amount of computational power to successfully mine a block, especially for cryptocurrencies like Bitcoin. To increase their chances of earning rewards, miners often join mining pools. Mining pools are groups of miners who combine their computing power to collectively solve puzzles and share the rewards proportionally based on their contributions.`,
+        "Drawing on our expertise in the gold market, Amber Trade implements optimized trading strategies to capitalize on market fluctuations and price movements. Our diligent monitoring of global economic trends and geopolitical developments ensures timely and strategic decisions in gold trading.",
       ],
     },
     {
-      title: "Selling Mined Cryptocurrency",
+      title: "Sustainable Real Estate Investments",
       texts: [
-        ` Once Amber Trade successfully mines cryptocurrency, they can choose to hold it as an investment or sell it on cryptocurrency exchanges to convert it into traditional fiat currency, such as US dollars or euros. The proceeds from selling mined cryptocurrency contribute to the company's revenue.`,
+        "Amber Trade focuses on sustainable projects with long-term growth potential. Our emphasis on investing in properties that offer value appreciation and stable returns ensures that our clients benefit from a resilient and diversified investment portfolio.",
       ],
     },
-    {
-      title: "Reinvestment and Expansion",
-      texts: [
-        `Amber Trade may reinvest some of its earnings to acquire additional mining hardware or improve its existing infrastructure. This reinvestment can increase the company's mining capacity, potentially leading to higher earnings over time.`,
-      ],
-    },
-    {
-      title: "Profit Margin and Operating Costs",
-      texts: [
-        `The profitability of cryptocurrency mining depends on several factors, including the cost of electricity, hardware maintenance, and the current market price of the mined cryptocurrency. Amber Trade must manage these operating costs to maintain a healthy profit margin.`,
-      ],
-    },
+   
     {
       title: "Where you come in",
       texts: [
-        `In order to remain a top miner in the industry, Amber Trade must manage these operational costs. We use the capital you invest to maintain our operations and distribute the total profits earned from mining.`,
+        `In order to remain a top force in the industry, Amber Trade must manage these operational costs. We use the capital you invest to maintain our operations and distribute the total profits earned from the investments.`,
       ],
     },
   ];
@@ -95,7 +82,7 @@ export default async function Page() {
       <Topper data={data} />
       <div className={styles.main}>
         <section className={styles.container}>
-          <p>{`Amber Trade generates money through cryptocurrency trading and mining by participating in the process of validating transactions on blockchain networks and earning rewards in the form of cryptocurrencies. Here's how this process works:`}</p>
+          <p>{`Transparency and value creation are fundamental aspects of our investment approach. We are dedicated to empowering our clients with a comprehensive understanding of how we generate profits. Here's a breakdown of our investment strategies, designed to ensure your financial success:`}</p>
           {texts.map((e, i) => (
             <div className={styles.content} key={i}>
               <h3>{e.title}</h3>

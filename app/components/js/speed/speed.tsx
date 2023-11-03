@@ -7,7 +7,7 @@ export default function Speed() {
     {
       title: "Unparalleled Convenience",
       image:"/assets/convenience.jpeg",
-      text:"With Amber Trade, convenience is at the forefront of your crypto journey. Seamlessly store your digital assets, mine cryptocurrency effortlessly, and invest in the most lucrative crypto projects, all within a single, user-friendly platform. Say goodbye to the hassle of managing multiple accounts – Amber Trade has you covered."
+      text:"With Amber Trade, convenience is at the forefront of your financial journey. Seamlessly store your digital assets, mine cryptocurrency effortlessly, and invest in the most lucrative projects, all within a single, user-friendly platform. Say goodbye to the hassle of managing multiple accounts – Amber Trade has you covered."
     },
     {
       title: "Empowering Mining Opportunities",
@@ -15,9 +15,24 @@ export default function Speed() {
       text:"Amber Trade is not just an investment platform; it's a gateway to the world of mining. Unlock the potential of your computing power and start mining crypto with ease. Our intuitive interface and expert guidance ensure that even beginners can delve into the world of crypto mining with confidence."
     },
     {
+      title: "Gold Trading",
+      image:"/assets/gold.webp",
+      text:"At Amber Trade, our expert understanding and global network enable us to facilitate seamless and transparent gold trading experiences, ensuring maximum returns and minimized risks for our clients."
+    },
+    {
+      title: "Stock Exchange",
+      image:"/assets/stock.jpeg",
+      text:"With meticulous market analysis and personalized portfolio management strategies, Amber Trade empowers investors to navigate the complexities of the stock exchange, fostering sustainable financial growth and long-term value creation."
+    },
+    {
+      title: "Real Estate and Infrastructure",
+      image:"/assets/estate.jpeg",
+      text:"Through strategic investments and a focus on innovation, Amber Trade contributes to the development of sustainable real estate and infrastructure projects, fostering economic growth and positive societal impact within local and international communities."
+    },
+    {
       title: "Strategic Investment Opportunities",
       image:"/assets/strategy.jpeg",
-      text:"Dive into the world of lucrative cryptocurrency projects with Amber Trade's expertly curated investment opportunities. Our team of seasoned analysts carefully vets every project, ensuring that you have access to only the most promising ventures. From established cryptocurrencies to cutting-edge blockchain projects, your investment potential knows no bounds."
+      text:"Dive into the world of success with Amber Trade's expertly curated investment opportunities. Our team of seasoned analysts carefully vets every project, ensuring that you have access to only the most promising ventures. From established cryptocurrencies to cutting-edge blockchain projects, real estate, stocks and gold trading, your investment potential knows no bounds."
     },
     {
       title: "Top-Notch Security Measures",
