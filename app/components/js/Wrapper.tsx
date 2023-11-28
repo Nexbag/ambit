@@ -101,11 +101,12 @@ export default function Wrap({ children }: Props) {
         {children}
       </UserContext.Provider>
 
-      {/* <Script
+      <Script
         type="text/javascript"
         id={"zsiqchat"}
-        src="//code.tidio.co/hrpxebkjnqnbonlapsnmerqsr3du7zyv.js"
-      /> */}
+        src="//code.tidio.co/sleu2w98fkken1tlwjkj6f3tszonn7ch.js"
+      /> 
+    
     </div>
   );
 }
