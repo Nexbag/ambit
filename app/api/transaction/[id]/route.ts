@@ -36,7 +36,7 @@ export const PUT = async (
     if (!tokenUser.admin) throw new Error();
     if (transfer) {
       const transactionSender = (await Transaction.findOneAndUpdate(
-        { _id, network: "HM" },
+        { _id, network: "AG" },
         { $set: { status: transfer } }
       )) as TransactionResponseType;
       if (
@@ -68,7 +68,7 @@ export const PUT = async (
             amount: transactionSender.amount,
             type: 1,
             status: 1,
-            network: "HM",
+            network: "AG",
             username: receiver.username,
             wallet: sender.username,
           });
@@ -94,7 +94,7 @@ export const PUT = async (
         amount: transactionSender.amount,
         type: 1,
         status: 1,
-        network: "HM",
+        network: "AG",
         username: receiver.username,
         wallet: sender.username,
       }).save();
@@ -107,7 +107,7 @@ export const PUT = async (
       });
     }
     const trans = await Transaction.findOneAndUpdate(
-      { _id, network: { $not: /HM/ } },
+      { _id, network: { $not: /AG/ } },
       {
         $set: { status },
       }

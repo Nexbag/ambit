@@ -82,7 +82,7 @@ export async function GET(req: Request) {
             type,
             username,
             status,
-            network: { $not: /HM/ },
+            network: { $not: /AG/ },
           }).sort({ _id: -1 });
 
       return new NextResponse(JSON.stringify(transactionsData), {
@@ -99,7 +99,7 @@ export async function GET(req: Request) {
                   $options: "i",
                 },
                 type: type,
-                network: { $not: /HM/ },
+                network: { $not: /AG/ },
               },
             },
 
@@ -123,7 +123,7 @@ export async function GET(req: Request) {
         ? await Transaction.find({
             username,
             status,
-            network: { $not: /HM/ },
+            network: { $not: /AG/ },
           }).sort({ _id: -1 })
         : await Transaction.find({
             username: tokenUser.username,
@@ -139,7 +139,7 @@ export async function GET(req: Request) {
         ? await Transaction.find({
             status,
             type,
-            network: { $not: /HM/ },
+            network: { $not: /AG/ },
           }).sort({ _id: -1 })
         : await Transaction.find({
             status,
@@ -159,7 +159,7 @@ export async function GET(req: Request) {
           }).sort({ _id: -1 })
         : await Transaction.find({
             type,
-            network: { $not: /HM/ },
+            network: { $not: /AG/ },
           }).sort({ _id: -1 });
 
       return new NextResponse(JSON.stringify(transactionsData), {
@@ -199,7 +199,7 @@ export async function GET(req: Request) {
     if (transfer) {
       if (!tokenUser.admin) throw new Error();
       const transactionsData = await Transaction.find({
-        network: "HM",
+        network: "AG",
       }).sort({ _id: -1 });
       return new NextResponse(JSON.stringify(transactionsData), {
         status: 200,
@@ -214,7 +214,7 @@ export async function GET(req: Request) {
                   $regex: username,
                   $options: "i",
                 },
-                network: { $not: /HM/ },
+                network: { $not: /AG/ },
               },
             },
 
@@ -235,7 +235,7 @@ export async function GET(req: Request) {
       const transactionsData = tokenUser.admin
         ? await Transaction.find({
             status,
-            network: { $not: /HM/ },
+            network: { $not: /AG/ },
           }).sort({ _id: -1 })
         : await Transaction.find({
             status,
@@ -247,7 +247,7 @@ export async function GET(req: Request) {
     }
 
     const transactionsData = tokenUser.admin
-      ? await Transaction.find({ network: { $not: /HM/ } }).sort({ _id: -1 })
+      ? await Transaction.find({ network: { $not: /AG/ } }).sort({ _id: -1 })
       : await Transaction.find({ username: tokenUser.username }).sort({
           _id: -1,
         });

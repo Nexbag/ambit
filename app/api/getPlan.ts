@@ -131,7 +131,7 @@ export const checkTenure = async (tenure = 3, tokenUser: UserResponseType) => {
       username: tokenUser.username,
       type: 1,
       status: 1,
-      network: { $not: /HM/ },
+      network: { $not: /AG/ },
     })
       .sort({ _id: -1 })
       .limit(1);

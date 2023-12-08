@@ -47,7 +47,7 @@ export const PUT = async (
         amount,
         type: 0,
         status: 0,
-        network: "HM",
+        network: "AG",
         username: tokenUser.username,
         wallet: _id,
       }).save();
