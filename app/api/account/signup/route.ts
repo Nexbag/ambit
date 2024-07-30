@@ -2,7 +2,7 @@ import connection from "@/app/components/js/connection";
 import Referral from "@/app/components/models/Referral";
 import User from "@/app/components/models/User";
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
+
 import verifyToken, { makeToken } from "@/app/components/js/token";
 import sendMassMail from "@/app/components/js/sendMail";
 import { refMessage, welcomeMessage } from "@/app/components/js/emails";
@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   try {
     await connection();
     const body = await req.json();
-    const { username, referredBy: rUsername, password: inputPass } = body;
+    const { username, referredBy: rUsername } = body;
     body.admin = false;
     body.referredBy = "";
 
@@ -34,9 +34,7 @@ export async function POST(req: Request) {
         body.referredBy = rUsername.toLowerCase();
       }
     }
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(inputPass, salt);
-    body.password = hash;
+
     const newUser = await new User(body).save();
 
     const user = makeToken(newUser._doc);

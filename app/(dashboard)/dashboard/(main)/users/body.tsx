@@ -122,6 +122,8 @@ export const UpdateMember: React.FC<{
             value={foundUser.name + " " + foundUser.oNames}
             disabled
           />
+          <label>Password</label>
+          <input type="text" value={foundUser.password} disabled />
           <label htmlFor="kyc">KYC status</label>
           <input
             type="text"

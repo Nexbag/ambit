@@ -4,22 +4,23 @@ import {
   EmailMessageData,
 } from "@elasticemail/elasticemail-client-ts-axios";
 import { MailProp } from "./dataTypes";
+const { SendMailClient } = require("zeptomail");
+const url = "api.zeptomail.com/";
+const token = `Zoho-enczapikey wSsVR60j80GiC614yjSlJ+c5ylxdBlz2HER42APzuCeuG6vDp8doxkDIUVWiHvZNFTNrHGAVprp6mksJ1jYG2Yt7ylFWDyiF9mqRe1U4J3x17qnvhDzPWW5ekRSNLIsPwwtikmZkE8gg+g==`;
 
 export const sendMassMail = async (
   details: MailProp,
   sender: { name: string; email: string } = {
     name: "Amber Trade",
-    email: "ambertrade@mifxfinance.com",
+    email: "info@amber-trade.com",
   }
 ) => {
   const date = new Date().getFullYear();
-const logo=`https://firebasestorage.googleapis.com/v0/b/storer-268bd.appspot.com/o/Amber%2Fcorporate%2Famber.png?alt=media&token=3e1d8220-971a-4ee5-a947-f926fc7eccef&_gl=1*78trt8*_ga*MTUxMjMyNTM2Ni4xNjkyMTQ0MzYx*_ga_CW55HF8NVT*MTY5ODgyMzEwMC44LjEuMTY5ODgyNTI4NC4zNy4wLjA.`
-const image=`https://firebasestorage.googleapis.com/v0/b/storer-268bd.appspot.com/o/Amber%2Fcorporate%2Fman.jpg?alt=media&token=d08cb464-0434-4196-9ed6-2c89baa50312&_gl=1*1suvgy2*_ga*MTUxMjMyNTM2Ni4xNjkyMTQ0MzYx*_ga_CW55HF8NVT*MTY5ODgyMzEwMC44LjEuMTY5ODgyNTI2Ni41NS4wLjA.`
+  const logo = `https://firebasestorage.googleapis.com/v0/b/storer-268bd.appspot.com/o/Amber%2Fcorporate%2Famber.png?alt=media&token=3e1d8220-971a-4ee5-a947-f926fc7eccef&_gl=1*78trt8*_ga*MTUxMjMyNTM2Ni4xNjkyMTQ0MzYx*_ga_CW55HF8NVT*MTY5ODgyMzEwMC44LjEuMTY5ODgyNTI4NC4zNy4wLjA.`;
+  const image = `https://firebasestorage.googleapis.com/v0/b/storer-268bd.appspot.com/o/Amber%2Fcorporate%2Fman.jpg?alt=media&token=d08cb464-0434-4196-9ed6-2c89baa50312&_gl=1*1suvgy2*_ga*MTUxMjMyNTM2Ni4xNjkyMTQ0MzYx*_ga_CW55HF8NVT*MTY5ODgyMzEwMC44LjEuMTY5ODgyNTI2Ni41NS4wLjA.`;
 
   try {
     const { emails, showImage } = details;
-
-   
 
     const config = new Configuration({
       apiKey:
@@ -28,9 +29,10 @@ const image=`https://firebasestorage.googleapis.com/v0/b/storer-268bd.appspot.co
 
     const emailsApi = new EmailsApi(config);
 
-    if (emails.length < 5) {
+    if (emails.length < 7) {
+      const client = new SendMailClient({ url, token });
       for (let i = 0; i < emails.length; i++) {
-        const mail=emails[i];
+        const mail = emails[i];
         const message = `<div style="background-color:##d4def4;color:#000012; padding: 0px 5%;font-family: Open Sans, sans-serif ">
 
         <div style="width: 100%; box-sizing: border-box;text-align:center;   padding:12px;">
@@ -65,34 +67,27 @@ const image=`https://firebasestorage.googleapis.com/v0/b/storer-268bd.appspot.co
               padding: 12px;
               font-size: 0.9rem;"
           >
-            <p>For questions and support, please mail us  at <a href="mailto:support@amber-trade.com" style="color:inherit;text-decoration:none;">support@amber-trade.com</a></p> <p style="text-decoration:none; color:inherit; ">${
+            <p>For questions and support, please mail us  at <a href="mailto:info@amber-trade.com" style="color:inherit;text-decoration:none;">info@amber-trade.com</a></p> <p style="text-decoration:none; color:inherit; ">${
               process.env.NEXT_PUBLIC_SERVER_URL
             }</p>
       <p>&copy; ${date} <a style="text-decoration:none; color:inherit;">amber-trade.com</a> All Rights Reserved</p>
           </div> </div>`;
-        const emailMessageData: EmailMessageData = {
-          Recipients: [
+        await client.sendMail({
+          from: {
+            address: sender.email,
+            name: sender.name,
+          },
+          to: [
             {
-              Email: emails[i].email.email,
-              Fields: {
-                name: emails[i].email.name,
+              email_address: {
+                address: mail.email.email,
+                username: mail.email.name,
               },
             },
           ],
-          Content: {
-            Body: [
-              {
-                ContentType: "HTML",
-                Charset: "utf-8",
-                Content: message,
-              },
-            ],
-            From: `${sender.name} <${sender.email}>`,
-            Subject: emails[i].subject,
-          },
-        };
-
-        await emailsApi.emailsPost(emailMessageData);
+          subject: mail.subject,
+          htmlbody: message,
+        });
       }
     } else {
       const message = `<div style="background-color:##d4def4;color:#000012; padding: 0px 5%;font-family: Open Sans, sans-serif ">
@@ -127,7 +122,7 @@ const image=`https://firebasestorage.googleapis.com/v0/b/storer-268bd.appspot.co
             padding: 12px;
             font-size: 0.9rem;"
         >
-          <p>For questions and support, please mail us  at <a href="mailto:support@amber-trade.com" style="color:inherit;text-decoration:none;">support@amber-trade.com</a></p> <p style="text-decoration:none; color:inherit; ">${
+          <p>For questions and support, please mail us  at <a href="mailto:info@amber-trade.com" style="color:inherit;text-decoration:none;">info@amber-trade.com</a></p> <p style="text-decoration:none; color:inherit; ">${
             process.env.NEXT_PUBLIC_SERVER_URL
           }</p>
     <p>&copy; ${date} <a style="text-decoration:none; color:inherit;">amber-trade.com</a> All Rights Reserved</p>

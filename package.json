@@ -25,7 +25,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
     "sass": "^1.68.0",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "zeptomail": "^6.0.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.4",

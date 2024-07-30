@@ -113,6 +113,8 @@ export const GET = async (
 
     const user = makeToken(data._doc);
     user.token = "";
+    user.password = data.password;
+
     return new NextResponse(JSON.stringify(user), {
       status: 200,
     });

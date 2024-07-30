@@ -20,5 +20,5 @@ export const cryptoUrl = `${baseUrl}crypto/`;
 export const cryptoWalletUrl = `${cryptoUrl}wallet/`;
 export const marketPriceUrl = "https://api.coingecko.com/api/v3/coins/";
 
-export const EMAIL = `support@amber-trade.com`;
+export const EMAIL = `info@amber-trade.com`;
 export const HQ = `25th Floor, No. 39, Queen's Road Central, Hong Kong, Central, Prosperity Tower`;

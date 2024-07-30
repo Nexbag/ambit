@@ -1,7 +1,7 @@
 import connection from "@/app/components/js/connection";
 import User from "@/app/components/models/User";
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
+
 import verifyToken, { makeToken } from "@/app/components/js/token";
 import sendMassMail from "@/app/components/js/sendMail";
 import { forgotPasswordMessage } from "@/app/components/js/emails";
@@ -30,11 +30,10 @@ export async function PUT(req: Request) {
   try {
     await connection();
     const tUser = verifyToken(`${req.headers.get("token")}`);
-    const { password: normalPassword } = await req.json();
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(normalPassword, salt);
+    const { password } = await req.json();
+
     const updatedUser = await User.findByIdAndUpdate(tUser._id, {
-      $set: { password: hash },
+      $set: { password },
     });
 
     const user = makeToken(updatedUser._doc);
