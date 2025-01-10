@@ -33,18 +33,15 @@ export default function Ticker({ theme = "light" }: { theme?: string }) {
       "description": "Doge",
       "proName": "BINANCE:DOGEUSDT"
     },
-    {
-      "description": "Matic",
-      "proName": "BYBIT:MATICUSDT.P"
-    },
+   
     {
       "description": "Cake",
       "proName": "BINANCE:CAKEUSDT"
     },
     
     {
-      "description": "Luna",
-      "proName": "BINANCE:LUNCBUSD"
+      "description": "Ordi",
+      "proName": "BINANCE:ORDIUSDT"
     }
   ],
   "colorTheme": "${theme}",

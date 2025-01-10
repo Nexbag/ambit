@@ -1,11 +1,11 @@
-import { CryptoResponseType } from "./dataTypes";
+import { CryptoResponseType, RawCryptoResponseType } from "./dataTypes";
 import { marketPriceUrl } from "./config";
 import { getRequest } from "./api_client";
 import Crypto from "../models/Crypto";
 
-export const getAllMarketPrice = async (): Promise<CryptoResponseType[]> => {
+export const getAllMarketPrice = async (): Promise<RawCryptoResponseType[]> => {
   const { data, success } = await getRequest(
-    `${marketPriceUrl}markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=false`
+    `${marketPriceUrl}markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false`
   );
   const listedCoins = success
     ? data.map((c: CryptoResponseType) => {
@@ -46,7 +46,7 @@ export const getCoinPrice = async (coin: string) => {
     $or: [{ symbol: coin }, { name: coin }, { _id: coin }],
   })) as CryptoResponseType;
 
-  const { data } = await getRequest(`${marketPriceUrl}ethereum`);
+  const { data } = await getRequest(`${marketPriceUrl}${foundCoin.ref}`);
 
   price = foundCoin.currentPrice * data.market_data.current_price.usd;
 

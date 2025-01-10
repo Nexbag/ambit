@@ -24,7 +24,7 @@ export async function GET(req: Request) {
       $or: [{ symbol: coinName }, { name: coinName }],
     })) as CryptoResponseType;
     const chart = await getChartData(
-      `${crypto ? "ethereum" : coinName}`,
+      crypto ? crypto.ref : coinName,
       parseInt(`${days || 1}`)
     );
     let coinDetails: CryptoResponseType | null = null;
@@ -34,7 +34,7 @@ export async function GET(req: Request) {
         (c) => c._id == coinName || c.symbol == coinName || c.name == coinName
       )!;
     } else {
-      const prices = chart.prices.map((price, i) => {
+      const prices = chart.prices.map((price) => {
         price[1] = price[1] * crypto.currentPrice;
         return price;
       });

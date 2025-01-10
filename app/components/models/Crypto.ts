@@ -17,6 +17,10 @@ const crypto = new mongoose.Schema<CryptoResponseType>(
       type: String,
       required: true,
     },
+    ref: {
+      type: String,
+      required: true,
+    },
     currentPrice: {
       type: Number,
       required: true,

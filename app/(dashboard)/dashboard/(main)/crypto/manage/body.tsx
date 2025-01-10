@@ -5,14 +5,24 @@ import { postRequest, putRequest } from "@/app/components/js/api_client";
 import { cryptoUrl } from "@/app/components/js/config";
 import { useState, FormEvent } from "react";
 import { uploadFile } from "@/app/components/js/firebaseconfig";
-import { CryptoResponseType } from "@/app/components/js/dataTypes";
+import {
+  CryptoResponseType,
+  RawCryptoResponseType,
+} from "@/app/components/js/dataTypes";
 import showMessage from "@/app/components/js/showError";
 import Paginate from "@/app/components/js/pager/Paginate";
 import Spinner from "@/app/components/js/spinner/Spinner";
-export default function Body({ cryptos }: { cryptos: CryptoResponseType[] }) {
+export default function Body({
+  cryptos,
+  market,
+}: {
+  cryptos: CryptoResponseType[];
+  market: RawCryptoResponseType[];
+}) {
   const context = useUserContext();
   const user = context?.user;
   const [name, setName] = useState<string>("");
+  const [ref, setRef] = useState<string>("ethereum");
   const [symbol, setSymbol] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [currentPrice, setCurrentPrice] = useState<string>("");
@@ -26,9 +36,10 @@ export default function Body({ cryptos }: { cryptos: CryptoResponseType[] }) {
       cryptoUrl,
       {
         name,
-        symbol:symbol.toLowerCase(),
+        symbol: symbol.toLowerCase(),
         currentPrice: parseFloat(currentPrice),
         image: images[0],
+        ref,
       },
       user?.token
     );
@@ -38,12 +49,15 @@ export default function Body({ cryptos }: { cryptos: CryptoResponseType[] }) {
   const handleUpdate = async (id: string) => {
     setMessage("Please wait...");
     const input = document.getElementById(id) as HTMLInputElement;
+    const refInput = document.getElementById(`${id}ref`) as HTMLInputElement;
     const currentPrice = parseFloat(input.value || "0");
+    const ref = refInput.value;
 
     const { success, message } = await putRequest(
       `${cryptoUrl}${id}`,
       {
         currentPrice,
+        ref,
       },
       user?.token
     );
@@ -73,12 +87,22 @@ export default function Body({ cryptos }: { cryptos: CryptoResponseType[] }) {
             value={symbol}
             onChange={(e) => setSymbol(e.target.value)}
           />
+
           <label>Price</label>
           <input
             type="number"
             value={currentPrice}
             onChange={(e) => setCurrentPrice(e.target.value)}
           />
+          <label>Reference</label>
+          <select value={ref} onChange={(e) => setRef(e.target.value)}>
+            <option value="">Select</option>
+            {market.map((e) => (
+              <option key={e.id} value={e.id}>
+                {e.name}
+              </option>
+            ))}
+          </select>
           <label>Image</label>
           <input type="file" accept="image/*" />
 
@@ -92,6 +116,7 @@ export default function Body({ cryptos }: { cryptos: CryptoResponseType[] }) {
             <span>Name</span>
             <span>Symbol</span>
             <span>Price</span>
+            <span>Ref</span>
             <span>Update</span>
           </div>
           {pageCryptos.map((e) => (
@@ -99,6 +124,14 @@ export default function Body({ cryptos }: { cryptos: CryptoResponseType[] }) {
               <span>{e.name}</span>
               <span>{e.symbol.toUpperCase()}</span>
               <input type="number" defaultValue={e.currentPrice} id={e._id} />
+              <select id={`${e._id}ref`} defaultValue={e.ref}>
+                <option value="">Select</option>
+                {market.map((e) => (
+                  <option key={e.id} value={e.id}>
+                    {e.name}
+                  </option>
+                ))}
+              </select>
               <span className="action2" onClick={() => handleUpdate(e._id)}>
                 Update
               </span>

@@ -1,6 +1,6 @@
 import connection from "@/app/components/js/connection";
 import { CryptoWalletResponseType } from "@/app/components/js/dataTypes";
-import { getEthPrice } from "@/app/components/js/marketdata";
+import getAllMarketPrice from "@/app/components/js/marketdata";
 import verifyToken, { makeWalletAddress } from "@/app/components/js/token";
 import Crypto from "@/app/components/models/Crypto";
 import CryptoWallet from "@/app/components/models/CryptoWallet";
@@ -21,6 +21,7 @@ export async function GET(req: Request) {
       : ((await CryptoWallet.find({
           username: tokenUser.username,
         })) as CryptoWalletResponseType[]);
+
     if (wallets.length < cryptos.length) {
       const newCustomWallets = cryptos.filter((coin) => {
         const addWallet = wallets.find((wall) => wall.coin == coin.symbol);
@@ -49,15 +50,19 @@ export async function GET(req: Request) {
         { username: tokenUser.username },
         { $set: { adminWallet: true } }
       );
-    const ethPrice = await getEthPrice();
+    const market = await getAllMarketPrice();
+
     const cryptoAndWallet: CryptoWalletResponseType[] = cryptos.map(
       (crypto: CryptoWalletResponseType) => {
         const found = wallets.find((wallet) => wallet.coin == crypto.symbol)!;
 
+        const raw = market.find((e) => e.id == crypto.ref);
+        const price = raw?.current_price || raw?.currentPrice || 0;
+
         crypto.address = found.address;
         crypto.balance = found.balance;
         crypto.username = found.username;
-        crypto.currentPrice = crypto.currentPrice * ethPrice;
+        crypto.currentPrice = crypto.currentPrice * price;
 
         return crypto;
       }

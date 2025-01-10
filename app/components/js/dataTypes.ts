@@ -88,13 +88,18 @@ export interface CryptoWalletResponseType extends WalletResponseType {
   image: string;
   currentPrice: number;
   symbol: string;
+  ref: string;
 }
 export interface CryptoResponseType extends EveryResponseType {
+  ref: string;
   name: string;
   symbol: string;
   id?: string;
   image: string;
   currentPrice: number;
+}
+export interface RawCryptoResponseType extends CryptoResponseType {
+  current_price: number;
 }
 export interface KYCResponseType extends EveryResponseType {
   username: string;
@@ -154,32 +159,28 @@ export interface NetworkType {
   value: string;
   img: string;
 }
-export const socials:{name:string;icon:IconType,value:string}[]=[
+export const socials: { name: string; icon: IconType; value: string }[] = [
   {
-     name:"Twitter",
-     value:"https://twitter.coms/ambergroup_io",
-     icon:FaTwitter,
-
+    name: "Twitter",
+    value: "https://twitter.coms/ambergroup_io",
+    icon: FaTwitter,
   },
   {
-     name:"Facebook",
-     value:"https://web.facebook.com/ambergroup.io?_rdc=1&_rdr",
-     icon:FaFacebook,
-
+    name: "Facebook",
+    value: "https://web.facebook.com/ambergroup.io?_rdc=1&_rdr",
+    icon: FaFacebook,
   },
   {
-     name:"LinkeIn",
-     value:"https://www.linkedin.com/company/amberbtc/",
-     icon:FaLinkedin,
-
+    name: "LinkeIn",
+    value: "https://www.linkedin.com/company/amberbtc/",
+    icon: FaLinkedin,
   },
   {
-     name:"YouTube",
-     value:"https://www.youtube.com/channel/UCcPGPMiWgBhCW14gh6QS3yQ",
-     icon:FaYoutube,
-
+    name: "YouTube",
+    value: "https://www.youtube.com/channel/UCcPGPMiWgBhCW14gh6QS3yQ",
+    icon: FaYoutube,
   },
-]
+];
 
 export const Networks: NetworkType[] = [
   { network: "Bitcoin", value: "bitcoin", img: "/assets/bitcoin.png" },
