@@ -57,6 +57,7 @@ export async function GET(req: Request) {
         const found = wallets.find((wallet) => wallet.coin == crypto.symbol)!;
 
         const raw = market.find((e) => e.id == crypto.ref);
+
         const price = raw?.current_price || raw?.currentPrice || 0;
 
         crypto.address = found.address;

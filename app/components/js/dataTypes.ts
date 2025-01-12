@@ -101,6 +101,10 @@ export interface CryptoResponseType extends EveryResponseType {
 export interface RawCryptoResponseType extends CryptoResponseType {
   current_price: number;
 }
+export interface DbRawCryptoResponseType extends EveryResponseType {
+  data: RawCryptoResponseType[];
+  date: number;
+}
 export interface KYCResponseType extends EveryResponseType {
   username: string;
   country: string;

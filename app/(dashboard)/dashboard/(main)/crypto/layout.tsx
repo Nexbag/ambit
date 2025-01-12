@@ -7,7 +7,7 @@ export default function PageLayout({
 }) {
   return (
     <div className={styles.layout}>
-      <CoinPriceTicker />
+      <CoinPriceTicker coinName="sol" />
 
       {children}
     </div>

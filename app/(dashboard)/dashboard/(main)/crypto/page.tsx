@@ -9,7 +9,7 @@ const fetchData = async (token: string) => {
 
   return {
     wallets: wallets || [],
-    cryptos: data || [],
+    cryptos: data.cryptos || [],
   };
 };
 

@@ -14,8 +14,8 @@ export async function GET(req: Request) {
     const coinName = url.searchParams.get("coinName");
     if (!coinName) {
       const cryptos = await Crypto.find();
-
-      return new NextResponse(JSON.stringify(cryptos), {
+      const market = await getAllMarketPrice();
+      return new NextResponse(JSON.stringify({ cryptos, market }), {
         status: 200,
       });
     }
@@ -31,7 +31,11 @@ export async function GET(req: Request) {
     if (!crypto) {
       const coins = await getAllMarketPrice();
       coinDetails = coins.find(
-        (c) => c._id == coinName || c.symbol == coinName || c.name == coinName
+        (c) =>
+          c.id == coinName ||
+          c._id == coinName ||
+          c.symbol == coinName ||
+          c.name == coinName
       )!;
     } else {
       const prices = chart.prices.map((price) => {

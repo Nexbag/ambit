@@ -1,18 +1,44 @@
-import { CryptoResponseType, RawCryptoResponseType } from "./dataTypes";
+import {
+  CryptoResponseType,
+  DbRawCryptoResponseType,
+  RawCryptoResponseType,
+} from "./dataTypes";
 import { marketPriceUrl } from "./config";
 import { getRequest } from "./api_client";
 import Crypto from "../models/Crypto";
+import DbRawCrypto from "../models/RawCrypto";
 
 export const getAllMarketPrice = async (): Promise<RawCryptoResponseType[]> => {
+  const twomin = 2 * 60 * 1000;
+  function mapper(data: RawCryptoResponseType[]) {
+    return data.map((c) => {
+      c._id = c.id!;
+      return c;
+    });
+  }
+  const res = (await DbRawCrypto.find()) as DbRawCryptoResponseType[];
+  const dbRawCrypto = res[0];
+  const now = new Date().getTime();
+
+  if (dbRawCrypto && dbRawCrypto.date + twomin > now) {
+    return mapper(dbRawCrypto.data);
+  }
+
   const { data, success } = await getRequest(
     `${marketPriceUrl}markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false`
   );
-  const listedCoins = success
-    ? data.map((c: CryptoResponseType) => {
-        c._id = c.id!;
-        return c;
-      })
-    : [];
+
+  if (success) {
+    const date = new Date().getTime();
+    await DbRawCrypto.findByIdAndUpdate(dbRawCrypto._id, {
+      $set: {
+        data,
+        date,
+      },
+    });
+  }
+  const listedCoins = success ? mapper(data) : mapper(dbRawCrypto.data);
+
   return listedCoins;
 };
 export const getChartData = async (
