@@ -15,11 +15,12 @@ const getData = async (token: string, username?: string) => {
   };
 };
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: { username?: string };
-}) {
+export default async function Page(
+  props: {
+    searchParams: Promise<{ username?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const token = await handleProtected(false);
   const { transactions, referrals, total } = await getData(
     token,

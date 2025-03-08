@@ -7,10 +7,8 @@ import { NextResponse } from "next/server";
 import connection from "@/app/components/js/connection";
 import Bonus from "@/app/components/models/Bonus";
 
-export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     await connection();
     const tokenUser = verifyToken(`${req.headers.get("token")}`);

@@ -4,7 +4,7 @@ import styles from "../style.module.scss";
 import { Topper, TopperType } from "@/app/components/js/carousel/Carousel";
 import { COMPANYNAME } from "@/app/components/js/config";
 
-const Terms: React.FC = (): JSX.Element => {
+const Terms: React.FC = () => {
   const topperData: TopperType = {
     title: "Protecting our clients",
 

@@ -4,7 +4,6 @@
   align-items: flex-start;
   gap: 50px;
   width: 100%;
- 
 
   .table {
     display: flex;
@@ -31,6 +30,19 @@
   .right,
   .left {
     flex: 1;
+    .allActions {
+      display: flex;
+      width: 100%;
+      gap: 10px;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      a {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }
 @media screen and (max-width: 800px) {

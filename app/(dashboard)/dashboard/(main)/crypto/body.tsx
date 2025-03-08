@@ -11,6 +11,8 @@ import showMessage from "@/app/components/js/showError";
 import { cryptoUrl, cryptoWalletUrl } from "@/app/components/js/config";
 import Spinner from "@/app/components/js/spinner/Spinner";
 import Image from "next/image";
+import Link from "next/link";
+import { MdLibraryBooks } from "react-icons/md";
 
 export default function Body({
   wallets,
@@ -61,9 +63,19 @@ export default function Body({
     <div className={styles.main}>
       <div className={styles.box}>
         <div className={styles.wallets}>
-          <h1>Wallets</h1>
+          <div className={styles.tit}>
+            <h1>Wallets</h1>
+            <Link href={`/dashboard/crypto/transactions`}>
+              <span>Order Book</span>
+              <MdLibraryBooks />
+            </Link>
+          </div>
           {wallets.map((wallet) => (
-            <div className={styles.wallet} key={wallet._id}>
+            <Link
+              className={styles.wallet}
+              key={wallet._id}
+              href={`/dashboard/crypto/wallets/${wallet._id}`}
+            >
               <div className={styles.img}>
                 <Image
                   src={wallet.image}
@@ -77,27 +89,40 @@ export default function Body({
                 <p>{wallet.name}</p>
                 <div>
                   <p>{wallet.symbol.toUpperCase()}</p>
-                  <p>{wallet.currentPrice.toLocaleString("USA")}</p>
+                  <p>
+                    {wallet.currentPrice.toLocaleString("en-US", {
+                      maximumFractionDigits: 6,
+                      minimumFractionDigits: 2,
+                    })}
+                  </p>
                 </div>
               </div>
               <div className={styles.value}>
                 <h2>
                   $
-                  {(wallet.balance * wallet.currentPrice).toLocaleString("USA")}
+                  {(wallet.balance * wallet.currentPrice).toLocaleString(
+                    "en-US",
+                    { maximumFractionDigits: 2, minimumFractionDigits: 2 }
+                  )}
                 </h2>
                 <div>
                   <p>{wallet.symbol.toUpperCase()}</p>
-                  <p>{wallet.balance.toLocaleString("USA")}</p>
+                  <p>
+                    {wallet.balance.toLocaleString("en-US", {
+                      maximumFractionDigits: 6,
+                      minimumFractionDigits: 2,
+                    })}
+                  </p>
                 </div>
                 <p className={styles.info}>Wallet balance</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
       <div className={styles.box}>
         <div className={styles.exchange}>
-          <h2>Swap Token</h2>
+          <h2>Funding {`(From balance)`}</h2>
           <form
             onSubmit={(e) => {
               e.preventDefault();

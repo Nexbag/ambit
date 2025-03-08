@@ -3,10 +3,8 @@ import { NextResponse } from "next/server";
 import connection from "@/app/components/js/connection";
 import InvestmentPlan from "@/app/components/models/InvestmentPlan";
 
-export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     await connection();
     const tokenUser = verifyToken(`${req.headers.get("token")}`);
@@ -30,10 +28,8 @@ export async function PUT(
   }
 }
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     await connection();
 
@@ -48,10 +44,8 @@ export async function GET(
     });
   }
 }
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     await connection();
     const tokenUser = verifyToken(`${req.headers.get("token")}`);

@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: COMPANYNAME,
   description: `${COMPANYNAME} is your number one choice for profitable cryptocurrency investments.`,
-  icons: [{ rel: "icon", url: "/favicon.ico" },],
+  icons: [{ rel: "icon", url: "/favicon.ico" },]
 };
 
 export default function RootLayout({

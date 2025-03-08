@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./GettingStarted.module.scss";
-const GettingStarted: React.FC = (): JSX.Element => {
+const GettingStarted: React.FC = () => {
   const steps: {
     title: string;
     body: string[];
@@ -79,7 +79,9 @@ const GettingStarted: React.FC = (): JSX.Element => {
                 <li key={k}>{l}</li>
               ))}
             </ul>
-            <Link href={step.action.link} className="action2">{step.action.text}</Link>
+            <Link href={step.action.link} className="action2">
+              {step.action.text}
+            </Link>
           </div>
         ))}
       </div>

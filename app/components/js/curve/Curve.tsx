@@ -39,11 +39,14 @@ const CoinPriceTicker: React.FC<{ coinName?: string }> = ({
       setCrypto(data.data);
       const values: { date: string; price: number }[] = [];
       data.chart.prices.forEach((price: number[]) => {
-        const date = `${new Date(price[0]).getUTCDate()} ${
-          months[new Date(price[0]).getMonth()]
-        } ${new Date(price[0]).getHours()}:${new Date(price[0]).getMinutes()}`;
+        const dateVal = new Date(price[0]);
+        const date = `${dateVal.getHours()}:${dateVal.getMinutes()}`;
+        // const date = `${dateVal.getUTCDate()} ${
+        //   months[dateVal.getMonth()]
+        // } ${dateVal.getHours()}:${dateVal.getMinutes()}`;
         values.push({ date, price: price[1] });
       });
+
       setData(() => values);
       const v1 = [...values];
       v1.sort((a, b) => b.price - a.price);
@@ -64,18 +67,18 @@ const CoinPriceTicker: React.FC<{ coinName?: string }> = ({
   }, [coinName, refetch]);
   useEffect(() => {
     const box = document.querySelector("#box") as HTMLDivElement;
-   if(box && data.length>3){
-  setTimeout(()=>{
-    const deviceWidth = window.innerWidth;
-    const childDiv=box.getElementsByTagName("div")[0];
-    const childWidth=childDiv.getBoundingClientRect().width
-    const width =childWidth*data.length- deviceWidth;
-    const time = width / 55;
-   document.body.style.setProperty("--length", `-${width}px`);
-    document.body.style.setProperty("--time", `${time}s`);
-  },1500)
-    
-   }
+    if (box && data.length > 3) {
+      setTimeout(() => {
+        const deviceWidth = window.innerWidth;
+        const childDiv = box.getElementsByTagName("div")[0];
+        const childWidth = childDiv.getBoundingClientRect().width;
+        const width = (childWidth * data.length) / deviceWidth;
+        const time = Math.round(width / 3);
+        const body = document.querySelector("body");
+        body?.style.setProperty("--length", `-${width + deviceWidth}px`);
+        body?.style.setProperty("--time", `${time}s`);
+      }, 1500);
+    }
   }, [data]);
   return (
     <div className={styles.curve}>
@@ -87,12 +90,24 @@ const CoinPriceTicker: React.FC<{ coinName?: string }> = ({
       <div className={styles.right}>
         <div className={styles.notices}>
           <div className={styles.notice}>
-            <span>${low?.price.toLocaleString("USA")}</span>
+            <span>
+              $
+              {low?.price.toLocaleString("en-US", {
+                maximumFractionDigits: 6,
+                minimumFractionDigits: 2,
+              })}
+            </span>
             <span>{low?.date}</span>
             <span>24h Low</span>
           </div>
           <div className={styles.notice}>
-            <span>${high?.price.toLocaleString("USA")}</span>
+            <span>
+              $
+              {high?.price.toLocaleString("en-US", {
+                maximumFractionDigits: 6,
+                minimumFractionDigits: 2,
+              })}
+            </span>
             <span>{high?.date}</span>
             <span>24h High</span>
           </div>
@@ -107,7 +122,11 @@ const CoinPriceTicker: React.FC<{ coinName?: string }> = ({
                     : styles.down
                 }
               >
-                ${day.price.toLocaleString("USA")}{" "}
+                $
+                {day.price.toLocaleString("en-US", {
+                  maximumFractionDigits: 6,
+                  minimumFractionDigits: 2,
+                })}{" "}
                 {data[i].price > (data[i - 1]?.price || data[i].price) ? (
                   <TbArrowUpRightCircle />
                 ) : (

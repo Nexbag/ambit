@@ -132,10 +132,12 @@ const Box: React.FC<{
           <h1>{`WELCOME ${user?.username.toUpperCase()}`}</h1>
           <h1>{COMPANYNAME} DASHBAORD</h1>
         </div>
-        <div className={styles.price}>
-          <Ticker theme="dark" />
-        </div>
-        <div className={user?.verified?styles.last:`${styles.last} ${styles.hideSome}`}>
+
+        <div
+          className={
+            user?.verified ? styles.last : `${styles.last} ${styles.hideSome}`
+          }
+        >
           {topLinks.map((link, i) => (
             <Link href={link.link} key={i}>
               {link.name}
@@ -147,26 +149,27 @@ const Box: React.FC<{
           )}
           {user?.admin && <Link href={"/dashboard/transfer"}>Transfers</Link>}
           {user?.admin ? (
-            <Link href={"/dashboard/crypto/manage"}>Token</Link>
+            <Link href={"/dashboard/crypto/manage"}>Assets</Link>
           ) : (
-            <Link href={"/dashboard/crypto"}>Buy token</Link>
+            <Link href={"/dashboard/crypto"}>Assets</Link>
           )}
           {!user?.verified && !user?.admin && (
             <button onClick={handleVerify}>Resend Verification</button>
           )}
           <button onClick={logout}>Logout</button>
         </div>
+        <div className={styles.price}>
+          <Ticker theme="dark" />
+        </div>
       </div>
       <div className={styles.center}>
-        <div className={styles.children}>
-          {children}
+        <div className={styles.children}>{children}</div>
+        <div className={styles.effect}>
+          <Cycle removeHover />
         </div>
-      <div className={styles.effect}>
-<Cycle removeHover/>
-      </div>
-      <div className={styles.effect2}>
-<Cycle removeHover/>
-      </div>
+        <div className={styles.effect2}>
+          <Cycle removeHover />
+        </div>
       </div>
       <div className={styles.bottom}>
         {user?.admin

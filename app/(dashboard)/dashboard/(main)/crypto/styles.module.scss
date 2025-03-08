@@ -35,6 +35,15 @@
       flex-direction: column;
       width: 100%;
       gap: 40px;
+      .tit {
+        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        color: $p;
+        padding-right: 10%;
+      }
       .wallet {
         display: flex;
         align-items: 100%;

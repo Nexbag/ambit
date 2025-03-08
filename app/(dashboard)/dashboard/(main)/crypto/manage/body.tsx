@@ -12,6 +12,7 @@ import {
 import showMessage from "@/app/components/js/showError";
 import Paginate from "@/app/components/js/pager/Paginate";
 import Spinner from "@/app/components/js/spinner/Spinner";
+import Link from "next/link";
 export default function Body({
   cryptos,
   market,
@@ -73,6 +74,17 @@ export default function Body({
   return (
     <div className={styles.main}>
       <div className={styles.left}>
+        <div className={styles.allActions}>
+          <Link href={"/dashboard/crypto/manage/wallets"} className="action">
+            Manage Wallets
+          </Link>
+          <Link
+            href={"/dashboard/crypto/manage/transactions"}
+            className="action"
+          >
+            Manage Orderbook
+          </Link>
+        </div>
         <h1>Create Token</h1>
         <form onSubmit={handleCreate} id="form">
           <label>Name</label>

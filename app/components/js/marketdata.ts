@@ -1,15 +1,17 @@
 import {
   CryptoResponseType,
   DbRawCryptoResponseType,
+  DbRawPriceResponseType,
   RawCryptoResponseType,
 } from "./dataTypes";
 import { marketPriceUrl } from "./config";
 import { getRequest } from "./api_client";
 import Crypto from "../models/Crypto";
 import DbRawCrypto from "../models/RawCrypto";
+import DbRawPrice from "../models/RawPrice";
 
+const twomin = 2 * 60 * 1000;
 export const getAllMarketPrice = async (): Promise<RawCryptoResponseType[]> => {
-  const twomin = 2 * 60 * 1000;
   function mapper(data: RawCryptoResponseType[]) {
     return data.map((c) => {
       c._id = c.id!;
@@ -49,11 +51,43 @@ export const getChartData = async (
   market_caps: number[][];
   total_volumes: number[][];
 }> => {
+  const dbPrice = (await DbRawPrice.findOne({
+    coin,
+    interval: days,
+  })) as DbRawPriceResponseType;
+
+  const now = new Date().getTime();
+
+  if (dbPrice && dbPrice.date + twomin > now) {
+    return {
+      prices: dbPrice.prices,
+      market_caps: [[]],
+      total_volumes: [[]],
+    };
+  }
+
   const { data, success } = await getRequest(
     `${marketPriceUrl}${coin}/market_chart/?vs_currency=usd&days=${days}`
   );
 
-  if (success) return data;
+  if (success) {
+    const date = new Date().getTime();
+    dbPrice
+      ? await DbRawPrice.findByIdAndUpdate(dbPrice._id, {
+          $set: {
+            prices: data.prices,
+            date,
+          },
+        })
+      : await DbRawPrice.create({
+          prices: data.prices,
+          date,
+          coin,
+          interval: days,
+        });
+
+    return data;
+  }
   const { data: ethereum } = await getRequest(
     `${marketPriceUrl}ethereum/market_chart/?vs_currency=usd&days=${days}`
   );
@@ -68,10 +102,13 @@ export const getChartData = async (
 export const getCoinPrice = async (coin: string) => {
   let price = 0;
 
-  const foundCoin = (await Crypto.findOne({
-    $or: [{ symbol: coin }, { name: coin }, { _id: coin }],
-  })) as CryptoResponseType;
-
+  const found = await Crypto.findOne({
+    $or:
+      coin.length > 10
+        ? [{ symbol: coin }, { name: coin }, { _id: coin }]
+        : [{ symbol: coin }, { name: coin }],
+  });
+  const foundCoin = found._doc as CryptoResponseType;
   const { data } = await getRequest(`${marketPriceUrl}${foundCoin.ref}`);
 
   price = foundCoin.currentPrice * data.market_data.current_price.usd;

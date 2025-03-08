@@ -10,10 +10,8 @@ import {
 } from "@/app/components/js/dataTypes";
 import getPlan, { checkTenure } from "../../getPlan";
 
-export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     await connection();
     const tokenUser = verifyToken(`${req.headers.get("token")}`);
@@ -82,10 +80,8 @@ export async function PUT(
     });
   }
 }
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     await connection();
     const tokenUser = verifyToken(`${req.headers.get("token")}`);

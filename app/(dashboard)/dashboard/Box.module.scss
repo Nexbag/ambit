@@ -31,7 +31,7 @@
   select {
     background-color: transparent;
     border: 1px solid colorWithOpacity($w, 0.7);
-
+    font-size: 1rem;
     font-family: inherit;
     padding: 3px 6px;
     outline: none;
@@ -58,7 +58,6 @@
     align-items: flex-start;
     gap: 10px;
     width: 100%;
- 
 
     > * {
       width: 100%;
@@ -75,7 +74,6 @@
       width: 100%;
       height: 50px;
     }
-
   }
   .top {
     flex-direction: column;
@@ -131,7 +129,7 @@
     .last {
       height: 45%;
       justify-content: space-between;
-      padding: 0px 5%;
+      padding: 4px 5%;
       gap: 20px;
       a,
       button {
@@ -140,21 +138,16 @@
         align-items: center;
         justify-content: center;
         flex: 1;
-        background: $p;
-        border-radius: 34px;
+        background: transparent;
+        background-color: colorWithOpacity($w, 0.01);
+        border-radius: 6px;
         font-size: 0.9rem;
-        color: $w;
+        color: $p;
         transition: 0.75s;
-        box-shadow: inset 0px 0px 8px colorWithOpacity($s, 0.4);
-        color: $bg;
+
         &:hover {
-          box-shadow: inset 0px 0px 32px colorWithOpacity($s, 0.6);
-          border-radius: 24px;
-       
+          background-color: colorWithOpacity($w, 0.1);
         }
-      }
-      button{
-        background: $grad;
       }
     }
   }
@@ -165,7 +158,7 @@
     z-index: 1;
 
     width: 100%;
-   
+
     background: linear-gradient(
       25deg,
       transparent 20%,
@@ -173,22 +166,22 @@
       transparent 80%
     );
     min-height: 100vh !important;
-   
-    .effect,.effect2{
+
+    .effect,
+    .effect2 {
       position: fixed;
-  bottom: 35vh;
-  right: 85vw;
+      bottom: 35vh;
+      right: 85vw;
       z-index: 1;
       height: 400px;
-width: 400px; 
-     
+      width: 400px;
     }
-.effect2{
-  bottom: 5vh;
-  rotate: 90deg;
-  right: 0;
-}
-    .children{
+    .effect2 {
+      bottom: 5vh;
+      rotate: 90deg;
+      right: 0;
+    }
+    .children {
       display: block;
       width: 100%;
       position: relative;
@@ -201,20 +194,19 @@ width: 400px;
         font-family: var(--bold);
         color: $p;
       }
-      form{
-        h2,h1{
+      form {
+        h2,
+        h1 {
           color: transparent;
           background: $grad;
           background-clip: text;
         }
       }
-  
+
       img {
         object-fit: contain;
       }
     }
-  
-  
   }
   .bottom {
     height: 10vh;
@@ -244,13 +236,13 @@ width: 400px;
       background: $wgrad;
       border-radius: 34px;
       font-size: 0.8rem;
-color: $p;
+      color: $p;
 
       .icon {
         font-size: 1.5rem;
       }
       &:hover {
-       border-radius: 24px;
+        border-radius: 24px;
       }
     }
   }
@@ -296,36 +288,37 @@ color: $p;
           height: 50%;
           padding: 10px;
           margin: 0;
-          // flex: unset;
+          border: 1px solid colorWithOpacity($p, 0.3) !important;
           min-width: 20%;
           font-weight: 600;
           font-size: 0.7rem;
         }
       }
-      .hideSome{
-     
-        >:nth-child(4),>:nth-child(6){
+      .hideSome {
+        > :nth-child(4),
+        > :nth-child(6) {
           display: none;
         }
       }
     }
     .center {
-      .children{
-       padding: 28vh 5% 12vh;
-      h1 {
-        font-size: 1.2rem;
-        margin: 0;
-        padding: 0;
+      .children {
+        padding: 28vh 5% 12vh;
+        h1 {
+          font-size: 1.2rem;
+          margin: 0;
+          padding: 0;
+        }
       }
-     }
-     .effect,.effect2{
-      height: 200px;
-      width: 200px;
-     }
-     .effect{
-      height: 300px;
-      right: 70vw;
-     }
+      .effect,
+      .effect2 {
+        height: 200px;
+        width: 200px;
+      }
+      .effect {
+        height: 300px;
+        right: 70vw;
+      }
     }
     .bottom {
       gap: 5px;
@@ -335,7 +328,6 @@ color: $p;
         font-size: 0.6rem;
         flex: 1;
         overflow: hidden;
-      
 
         .icon {
           font-size: 1.4rem;

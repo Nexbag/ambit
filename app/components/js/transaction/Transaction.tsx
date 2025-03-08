@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Countries } from "../countries";
 
 import styles from "./Transaction.module.scss";
-const Transactions: React.FC = (): JSX.Element => {
+const Transactions: React.FC = () => {
   const [country, setCountry] = useState<string>("");
   const [amount, setAmount] = useState<number>(200);
   const [start, setStart] = useState<boolean>(false);

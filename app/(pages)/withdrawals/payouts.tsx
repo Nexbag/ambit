@@ -1,6 +1,6 @@
 import styles from "./Payouts.module.scss";
 
-const Payouts: React.FC = (): JSX.Element => {
+const Payouts: React.FC = () => {
   return (
     <div className={styles.overview}>
       <div className={styles.container}>

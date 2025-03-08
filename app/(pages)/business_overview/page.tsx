@@ -8,7 +8,7 @@ import Screen from "@/app/components/js/largescreen/Screen";
 import Image from "next/image";
 export const metadata: Metadata = {
   title: `${COMPANYNAME} | Business Overview`,
-  description: `Our business revolves around cryptocurrency, stocks, gold and real estate.`,
+  description: `Our business revolves around cryptocurrency, stocks, gold and real estate.`
 };
 export default async function Page() {
   const data: TopperType = {

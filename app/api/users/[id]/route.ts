@@ -8,10 +8,8 @@ import sendMassMail from "@/app/components/js/sendMail";
 import { transferStartMessage } from "@/app/components/js/emails";
 import bcrypt from "bcryptjs";
 
-export const PUT = async (
-  req: Request,
-  { params }: { params: { id: string } }
-) => {
+export const PUT = async (req: Request, props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   try {
     await connection();
     const bodyRequest = await req.json();
@@ -99,10 +97,8 @@ export const PUT = async (
     });
   }
 };
-export const GET = async (
-  req: Request,
-  { params }: { params: { id: string } }
-) => {
+export const GET = async (req: Request, props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   try {
     await connection();
 
@@ -124,17 +120,15 @@ export const GET = async (
     });
   }
 };
-export const DELETE = async (
-  req: Request,
-  { params }: { params: { id: string } }
-) => {
+export const DELETE = async (req: Request, props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   try {
     await connection();
 
     const tokenUser = verifyToken(req.headers.get("token") || "");
     if (!tokenUser.admin) throw new Error();
 
-    await User.findByIdAndUpdate(params.id, { $set: { disabled: true } });
+    await User.findByIdAndDelete(params.id);
 
     return new NextResponse(JSON.stringify({ message: "Success!" }), {
       status: 200,

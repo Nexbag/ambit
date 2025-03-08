@@ -4,7 +4,7 @@ import { postRequest, putRequest } from "./api_client";
 import { tokenUrl, usersUrl } from "./config";
 
 const handleProtected = async (admin: boolean = false, vot?: string) => {
-  const nextCookies = cookies();
+  const nextCookies = await cookies();
 
   const token = nextCookies.get("token")?.value;
 
@@ -21,7 +21,7 @@ const handleProtected = async (admin: boolean = false, vot?: string) => {
   return token;
 };
 export const handleVerify = async (vot?: string) => {
-  const nextCookies = cookies();
+  const nextCookies = await cookies();
 
   const token = nextCookies.get("token")?.value;
 
@@ -37,7 +37,7 @@ export const handleVerify = async (vot?: string) => {
 };
 
 export const handleAuthorization = async () => {
-  const nextCookies = cookies();
+  const nextCookies = await cookies();
 
   const token = nextCookies.get("token")?.value;
 

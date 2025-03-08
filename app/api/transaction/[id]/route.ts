@@ -17,10 +17,8 @@ import {
 import ReferralTransaction from "@/app/components/models/ReferralTransaction";
 import getPlan from "../../getPlan";
 
-export const PUT = async (
-  req: Request,
-  { params }: { params: { id: string } }
-) => {
+export const PUT = async (req: Request, props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   try {
     await connection();
     const tokenUser = verifyToken(req.headers.get("token") || "");
@@ -181,10 +179,8 @@ export const PUT = async (
   }
 };
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     await connection();
 

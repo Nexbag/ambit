@@ -105,6 +105,12 @@ export interface DbRawCryptoResponseType extends EveryResponseType {
   data: RawCryptoResponseType[];
   date: number;
 }
+export interface DbRawPriceResponseType extends EveryResponseType {
+  prices: number[][];
+  date: number;
+  interval: number;
+  coin: string;
+}
 export interface KYCResponseType extends EveryResponseType {
   username: string;
   country: string;
@@ -117,7 +123,24 @@ export interface ReferralResponseType extends EveryResponseType {
   username: string;
   rUsername: string;
 }
-
+export interface CryptoOrderBookResponseType extends EveryResponseType {
+  username: string;
+  baseCoin: string;
+  newCoin: string;
+  basePrice: number;
+  newPrice: number;
+  baseQty: number;
+  newQty: number;
+  date: number;
+}
+export interface WalletTranzResponseType extends EveryResponseType {
+  username: string;
+  coin: string;
+  type: 0 | 1;
+  amount: number;
+  qty: number;
+  date: number;
+}
 export interface SingleEmailProp {
   email_address: {
     address: string;

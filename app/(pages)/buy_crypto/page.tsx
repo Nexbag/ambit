@@ -7,7 +7,7 @@ import { Topper, TopperType } from "@/app/components/js/carousel/Carousel";
 interface Brookers {
   link: string;
 }
-const BuyBtc: React.FC = (): JSX.Element => {
+const BuyBtc: React.FC = () => {
   const brookers: Brookers[] = [
     {
       link: "paxful.com",

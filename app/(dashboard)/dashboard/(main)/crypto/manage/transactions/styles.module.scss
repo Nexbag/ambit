@@ -1,0 +1,100 @@
+@import "../../../../../../utilities.module";
+
+.main {
+  display: flex;
+  width: 100%;
+
+  .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    div {
+      display: flex;
+    }
+    > * {
+      width: 100%;
+    }
+    .searchBar {
+      input {
+        width: 100%;
+      }
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 20px;
+      .orderBox {
+        width: 100%;
+        background: linear-gradient(
+          to right,
+          colorWithOpacity($w, 0.2),
+          transparent,
+          colorWithOpacity($w, 0.1)
+        );
+        padding: 12px;
+        border-radius: 6px;
+        justify-content: space-between;
+        .order {
+          width: 30%;
+          align-items: center;
+          .details {
+            flex: 2;
+            flex-direction: column;
+
+            .title {
+              font-size: 1rem;
+              display: flex;
+              align-items: center;
+              gap: 30px;
+              text-transform: uppercase;
+            }
+            .date {
+              font-size: 0.85rem;
+              font-style: italic;
+              color: $s;
+            }
+          }
+          .amount {
+            flex: 1;
+            font-size: 1.5rem;
+          }
+        }
+        .mod {
+          width: 65%;
+          gap: 10px;
+          justify-content: space-between;
+          > * {
+            flex-direction: column;
+            width: 18%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    .left {
+      .column {
+        .orderBox {
+          flex-direction: column;
+          gap: 30px;
+          .order {
+            width: 100%;
+          }
+          .mod {
+            width: 100%;
+            flex-wrap: wrap;
+            > * {
+              flex-direction: column;
+              width: 45%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

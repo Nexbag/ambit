@@ -14,7 +14,7 @@ import Listed from "@/app/components/js/listed/listed";
 
 export const metadata: Metadata = {
   title: `About ${COMPANYNAME}`,
-  description: `Amber Trade is a digital platform that facilitates cryptocurrency trading, mining and investment opportunities involving stock exchange, gold trading, real estate and infrastructure for individuals and corporate bodies.`,
+  description: `Amber Trade is a digital platform that facilitates cryptocurrency trading, mining and investment opportunities involving stock exchange, gold trading, real estate and infrastructure for individuals and corporate bodies.`
 };
 
 export default function About() {

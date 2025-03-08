@@ -18,15 +18,21 @@
 
 $p: #87ffa1;
 $s: #8ff8ff;
-$grad:linear-gradient(90deg,var(--s),var(--p));
+$grad: linear-gradient(90deg, var(--s), var(--p));
 $bg: #000000;
 $g: #eceff5;
 $w: #ffffff;
 $t: #fd040c;
-$wgrad:linear-gradient(to right, colorWithOpacity($w,0.1),transparent,colorWithOpacity($w,0.1));
 
-
-
+$wgrad: linear-gradient(
+  to right,
+  colorWithOpacity($w, 0.1),
+  transparent,
+  colorWithOpacity($w, 0.1)
+);
+.red {
+  color: $t;
+}
 @mixin animate($name, $duration, $method, $delay, $loop) {
   animation: $name $duration $method $loop;
 }
@@ -59,15 +65,12 @@ $wgrad:linear-gradient(to right, colorWithOpacity($w,0.1),transparent,colorWithO
 }
 @include keyframes(cycle) {
   0% {
-  rotate: 0deg;
+    rotate: 0deg;
   }
   50% {
     rotate: 180deg;
-
   }
   100% {
     rotate: 360deg;
-
   }
 }
-

@@ -1,5 +1,8 @@
 import connection from "@/app/components/js/connection";
-import { CryptoWalletResponseType } from "@/app/components/js/dataTypes";
+import {
+  CryptoResponseType,
+  CryptoWalletResponseType,
+} from "@/app/components/js/dataTypes";
 import getAllMarketPrice from "@/app/components/js/marketdata";
 import verifyToken, { makeWalletAddress } from "@/app/components/js/token";
 import Crypto from "@/app/components/models/Crypto";
@@ -9,20 +12,29 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request) {
   try {
     await connection();
+    const url = new URL(req.url);
+    const username = url.searchParams.get("username");
+    const all = url.searchParams.get("all");
     const tokenUser = verifyToken(`${req.headers.get("token")}`);
 
     const cryptocurrencys = await Crypto.find().sort({ _id: -1 });
     const cryptos = cryptocurrencys.map((crypto: { _doc: any }) => crypto._doc);
 
-    const wallets = tokenUser.admin
-      ? ((await CryptoWallet.find({
-          adminWallet: true,
-        })) as CryptoWalletResponseType[])
-      : ((await CryptoWallet.find({
+    const walls = tokenUser.admin
+      ? username
+        ? await CryptoWallet.find({
+            username: tokenUser.username,
+          })
+        : all
+        ? await CryptoWallet.find()
+        : await CryptoWallet.find({
+            adminWallet: true,
+          })
+      : await CryptoWallet.find({
           username: tokenUser.username,
-        })) as CryptoWalletResponseType[]);
-
-    if (wallets.length < cryptos.length) {
+        });
+    const wallets = walls.map((e) => e._doc) as CryptoWalletResponseType[];
+    if (wallets.length < cryptos.length && (!all || !username)) {
       const newCustomWallets = cryptos.filter((coin) => {
         const addWallet = wallets.find((wall) => wall.coin == coin.symbol);
         if (!addWallet) return coin;
@@ -31,15 +43,15 @@ export async function GET(req: Request) {
         return {
           coin: coin.symbol,
           address: makeWalletAddress(coin.name),
-          username: tokenUser.username,
+          username: username || tokenUser.username,
           balance: 0,
           adminWallet: tokenUser.admin,
         };
       });
 
       const addedWallets = await CryptoWallet.create(walletsToAdd);
-
-      wallets.push(...addedWallets);
+      const docs = addedWallets.map((e) => e._doc);
+      wallets.push(...docs);
     }
     if (
       (!wallets[0].admin || !wallets[wallets.length - 1].admin) &&
@@ -52,20 +64,21 @@ export async function GET(req: Request) {
       );
     const market = await getAllMarketPrice();
 
-    const cryptoAndWallet: CryptoWalletResponseType[] = cryptos.map(
-      (crypto: CryptoWalletResponseType) => {
-        const found = wallets.find((wallet) => wallet.coin == crypto.symbol)!;
-
-        const raw = market.find((e) => e.id == crypto.ref);
-
+    const cryptoAndWallet: CryptoWalletResponseType[] = wallets.map(
+      (wallet: CryptoWalletResponseType) => {
+        const found = cryptos.find(
+          (crypto) => wallet.coin == crypto.symbol
+        ) as CryptoResponseType;
+        const raw = market.find((e) => e.id == found.ref);
         const price = raw?.current_price || raw?.currentPrice || 0;
+        wallet.currentPrice = found.currentPrice * price;
+        wallet.ref = found.ref;
+        wallet.name = found.name;
+        wallet.symbol = found.symbol;
 
-        crypto.address = found.address;
-        crypto.balance = found.balance;
-        crypto.username = found.username;
-        crypto.currentPrice = crypto.currentPrice * price;
+        wallet.image = found.image;
 
-        return crypto;
+        return wallet;
       }
     );
     cryptoAndWallet.sort(

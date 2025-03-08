@@ -4,7 +4,7 @@ import styles from "./Calculator.module.scss";
 import { InvestmentPlanResponseType } from "@/app/components/js/dataTypes";
 const Calculator: React.FC<{ plans: InvestmentPlanResponseType[] }> = ({
   plans,
-}): JSX.Element => {
+}) => {
   const [amount, setAmount] = useState<number>(0);
   const [selPlan, setSelPlan] = useState<InvestmentPlanResponseType>();
 

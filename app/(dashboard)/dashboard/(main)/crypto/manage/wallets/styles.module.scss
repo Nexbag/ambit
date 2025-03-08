@@ -1,0 +1,162 @@
+@import "../../../../../../utilities.module";
+.main {
+  display: flex;
+  width: 100%;
+  gap: 100px;
+  flex-direction: row;
+  div {
+    display: flex;
+  }
+  .left,
+  .right {
+    flex: 1;
+    flex-direction: column;
+    gap: 20px;
+    > div {
+      width: 100%;
+    }
+    .searchBar {
+      input {
+        width: 100%;
+      }
+    }
+    .wallets {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .wallet {
+      display: flex;
+      align-items: 100%;
+      align-items: center;
+      background: $wgrad;
+      gap: 10px;
+      padding: 2.5%;
+      border-radius: 32px;
+      justify-content: space-between;
+      border-bottom: 4px solid colorWithOpacity($w, 0.1);
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        font-size: 0.9rem;
+      }
+
+      .img {
+        overflow: hidden;
+        border-radius: 50%;
+        img {
+          object-position: center;
+          object-fit: cover;
+        }
+      }
+      .details {
+        flex: 2;
+      }
+      .value {
+        flex: 1;
+
+        .info {
+          color: $p;
+        }
+      }
+    }
+    .selWallet {
+      flex-direction: column;
+      gap: 50px;
+      .top {
+        width: 100%;
+        position: relative;
+        gap: 20px;
+        align-items: center;
+        justify-content: space-between;
+        .wallet {
+          width: 85%;
+        }
+        > span {
+          width: 20px;
+          background: $t;
+          font-size: 0.85rem;
+          color: $w;
+        }
+      }
+      .exchange {
+        flex-direction: column;
+        gap: 10px;
+        > * {
+          width: 100%;
+        }
+        .actions {
+          gap: 10px;
+          justify-content: space-between;
+        }
+        .swap {
+          gap: 10px;
+          > * {
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    flex-direction: column-reverse;
+    gap: 50px;
+    .left,
+    .right {
+      flex: unset;
+      width: 100%;
+
+      .wallet {
+        div {
+          font-size: 0.8rem;
+        }
+
+        .details {
+          flex: 2;
+          h3 {
+            font-size: 0.8rem;
+          }
+        }
+        .value {
+          flex: 1;
+          font-size: 0.75rem;
+          h2 {
+            font-size: 0.9rem;
+          }
+          .info {
+            color: $p;
+          }
+        }
+      }
+      .selWallet {
+        flex-direction: column;
+        gap: 50px;
+        .top {
+          gap: 10px;
+        }
+        .exchange {
+          flex-direction: column;
+          gap: 20px;
+          > * {
+            width: 100%;
+          }
+          .actions {
+            gap: 10px;
+            flex-wrap: wrap;
+            > * {
+              flex: 1;
+              min-width: 45%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

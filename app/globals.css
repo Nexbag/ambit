@@ -9,12 +9,12 @@
   --white: #ffffff;
   --s: #8ff8ff;
   --t: #ed0000;
-  --grad:linear-gradient(90deg,var(--s),var(--p));
+  --grad: linear-gradient(90deg, var(--s), var(--p));
   --bg: #000000;
   --x: -150%;
   --y: 50%;
-  /* --time:2s;
-  --length:150vw; */
+  --time: 22s;
+  --length: -500px;
 }
 
 * {
@@ -41,7 +41,7 @@ body {
   );
   color: var(--bg);
 }
-::selection{
+::selection {
   background: var(--p);
   color: var(--bg);
 }
@@ -66,8 +66,8 @@ button,
   padding: 10px 24px;
   justify-content: center;
   align-items: center;
- border: none;
- background: var(--grad);
+  border: none;
+  background: var(--grad);
   color: var(--bg);
   border-radius: 3px;
   font-weight: 600;
@@ -77,7 +77,6 @@ button,
 .action2 {
   padding: 10px;
   margin: 6px 0;
-  
 }
 button {
   border: none !important;

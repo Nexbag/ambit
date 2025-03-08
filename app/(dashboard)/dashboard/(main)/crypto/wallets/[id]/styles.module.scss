@@ -1,0 +1,122 @@
+@import "../../../../../../utilities.module";
+.main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  gap: 20px;
+  * {
+    margin: 0;
+  }
+  .container {
+    width: 100%;
+    display: flex;
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+    .left {
+      width: 50%;
+      padding-right: 5%;
+      gap: 20px;
+      .wallet {
+        width: 100%;
+        gap: 50px;
+        border: 2px solid $p;
+        padding: 12px;
+        border-radius: 12px;
+        align-items: center;
+        align-items: center;
+        .address {
+          width: 100%;
+          text-align: center;
+          align-items: center;
+          gap: 5px;
+          p {
+            font-size: 1.5rem;
+            margin: 0;
+          }
+          span {
+            color: $g;
+            font-size: 0.8rem;
+          }
+        }
+        .row {
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          gap: 20px;
+          .img {
+            width: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+          }
+          .details {
+            width: 30%;
+          }
+          .value {
+            width: 30%;
+          }
+        }
+      }
+      .searchBar {
+        width: 100%;
+        gap: 20px;
+        border: 2px solid $p;
+        padding: 12px;
+        border-radius: 12px;
+        align-items: center;
+        .ex {
+          font-size: 2rem;
+          color: $p;
+        }
+        input {
+          width: 100%;
+          border: 1px solid $w;
+          border-radius: 6px;
+        }
+        .actions {
+          flex-direction: row;
+          gap: 10px;
+          width: 100%;
+          > * {
+            flex: 1;
+            &:hover {
+              padding: 10px 24px;
+              scale: 1;
+            }
+          }
+        }
+      }
+    }
+    .right {
+      width: 50%;
+      gap: 40px;
+      > div {
+        width: 100%;
+        height: 45vh;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    .container {
+      flex-direction: column;
+      gap: 50px;
+      .left {
+        width: 100%;
+        padding: 0%;
+      }
+      .right {
+        width: 100%;
+
+        > div {
+          width: 100%;
+          height: 45vh;
+        }
+      }
+    }
+  }
+}

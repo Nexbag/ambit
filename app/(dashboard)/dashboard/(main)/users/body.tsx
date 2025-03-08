@@ -4,7 +4,11 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import { UserResponseType } from "@/app/components/js/dataTypes";
-import { getRequest, putRequest } from "@/app/components/js/api_client";
+import {
+  deleteRequest,
+  getRequest,
+  putRequest,
+} from "@/app/components/js/api_client";
 import { usersUrl } from "@/app/components/js/config";
 import { useUserContext } from "@/app/components/js/Wrapper";
 import showError from "@/app/components/js/showError";
@@ -92,6 +96,17 @@ export const UpdateMember: React.FC<{
     showError(setError, message);
     if (success) location.reload();
   };
+  const deleteUser = async () => {
+    setError("Please wait ...");
+
+    const { message, success } = await deleteRequest(
+      `${usersUrl}${foundUser._id}`,
+      user?.token
+    );
+
+    showError(setError, message);
+    if (success) location.replace("/dashboard/users");
+  };
   const handleFunding = async (add = true) => {
     setError("Please wait ...");
 
@@ -146,6 +161,14 @@ export const UpdateMember: React.FC<{
             }}
           >
             {foundUser.disabled ? "Unsuspend User" : "Suspend User"}
+          </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              deleteUser();
+            }}
+          >
+            Delete user
           </button>
         </form>
 
