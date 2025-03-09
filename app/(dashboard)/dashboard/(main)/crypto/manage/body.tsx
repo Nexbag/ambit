@@ -33,6 +33,7 @@ export default function Body({
     e.preventDefault();
     setMessage("Please wait...");
     const images = await uploadFile(name, "form");
+
     const { data, success, message } = await postRequest(
       cryptoUrl,
       {

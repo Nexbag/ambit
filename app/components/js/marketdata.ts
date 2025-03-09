@@ -1,15 +1,19 @@
 import {
+  CandleResponseType,
   CryptoResponseType,
+  DbRawCandleResponseType,
   DbRawCryptoResponseType,
   DbRawPriceResponseType,
   RawCryptoResponseType,
 } from "./dataTypes";
-import { marketPriceUrl } from "./config";
+import { COINDESKKEY, marketPriceUrl } from "./config";
 import { getRequest } from "./api_client";
 import Crypto from "../models/Crypto";
 import DbRawCrypto from "../models/RawCrypto";
 import DbRawPrice from "../models/RawPrice";
+import DbRawCandle from "../models/CandlePrice";
 
+const threemin = 2 * 60 * 1000;
 const twomin = 2 * 60 * 1000;
 export const getAllMarketPrice = async (): Promise<RawCryptoResponseType[]> => {
   function mapper(data: RawCryptoResponseType[]) {
@@ -27,7 +31,7 @@ export const getAllMarketPrice = async (): Promise<RawCryptoResponseType[]> => {
   }
 
   const { data, success } = await getRequest(
-    `${marketPriceUrl}markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false`
+    `${marketPriceUrl}markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false`
   );
 
   if (success) {
@@ -98,6 +102,43 @@ export const getChartData = async (
         market_caps: [[]],
         total_volumes: [[]],
       };
+};
+export const getCandleData = async (
+  coin: string = "btc",
+  days: number = 1
+): Promise<CandleResponseType[]> => {
+  const dbCandle = (await DbRawCandle.findOne({
+    coin,
+  })) as DbRawCandleResponseType;
+
+  const now = new Date().getTime();
+
+  if (dbCandle && dbCandle.date + threemin > now) {
+    return dbCandle.Data;
+  }
+
+  const { data, success } = await getRequest(
+    `https://data-api.coindesk.com/index/cc/v1/historical/minutes?market=cadli&instrument=${coin.toUpperCase()}-USD&fill=true&apply_mapping=true&response_format=JSON&groups=OHLC&aggregate=5&limit=350&api_key=${COINDESKKEY}`
+  );
+
+  if (success) {
+    const date = new Date().getTime();
+    dbCandle
+      ? await DbRawCandle.findByIdAndUpdate(dbCandle._id, {
+          $set: {
+            Data: data.Data,
+            date,
+          },
+        })
+      : await DbRawCandle.create({
+          Data: data.Data,
+          date,
+          coin,
+        });
+
+    return data.Data;
+  }
+  return [];
 };
 export const getCoinPrice = async (coin: string) => {
   let price = 0;

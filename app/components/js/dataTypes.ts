@@ -111,6 +111,20 @@ export interface DbRawPriceResponseType extends EveryResponseType {
   interval: number;
   coin: string;
 }
+export interface CandleResponseType {
+  UNIT: string;
+  TIMESTAMP: number;
+  OPEN: number;
+  HIGH: number;
+  LOW: number;
+  CLOSE: number;
+}
+export interface DbRawCandleResponseType extends EveryResponseType {
+  Data: CandleResponseType[];
+  date: number;
+
+  coin: string;
+}
 export interface KYCResponseType extends EveryResponseType {
   username: string;
   country: string;

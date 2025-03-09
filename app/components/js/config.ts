@@ -24,7 +24,7 @@ export const marketPriceUrl = "https://api.coingecko.com/api/v3/coins/";
 
 export const EMAIL = `info@amber-trade.com`;
 export const HQ = `25th Floor, No. 39, Queen's Road Central, Hong Kong, Central, Prosperity Tower`;
-
+export const COINDESKKEY = `c942bdf4f4d58443823ec98c818b5b1dcbe734055c0b4b6eace09c780b2425d7`;
 export function dateValue(value: number) {
   const date = new Date(value);
   return date.toLocaleDateString("en-US", {
@@ -46,6 +46,6 @@ export function twoFrac(value: number) {
 export function sixFrac(value: number) {
   return value.toLocaleString("en-US", {
     minimumFractionDigits: 2,
-    maximumFractionDigits: 6,
+    maximumFractionDigits: 7,
   });
 }

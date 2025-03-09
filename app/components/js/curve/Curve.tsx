@@ -40,7 +40,13 @@ const CoinPriceTicker: React.FC<{ coinName?: string }> = ({
       const values: { date: string; price: number }[] = [];
       data.chart.prices.forEach((price: number[]) => {
         const dateVal = new Date(price[0]);
-        const date = `${dateVal.getHours()}:${dateVal.getMinutes()}`;
+        const date = `${dateVal
+          .getHours()
+          .toString()
+          .padStart(2, "0")}:${dateVal
+          .getMinutes()
+          .toString()
+          .padStart(2, "0")}`;
         // const date = `${dateVal.getUTCDate()} ${
         //   months[dateVal.getMonth()]
         // } ${dateVal.getHours()}:${dateVal.getMinutes()}`;

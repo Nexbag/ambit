@@ -34,7 +34,7 @@ export async function GET(req: Request) {
           username: tokenUser.username,
         });
     const wallets = walls.map((e) => e._doc) as CryptoWalletResponseType[];
-    if (wallets.length < cryptos.length && (!all || !username)) {
+    if (wallets.length < cryptos.length && !(all || username)) {
       const newCustomWallets = cryptos.filter((coin) => {
         const addWallet = wallets.find((wall) => wall.coin == coin.symbol);
         if (!addWallet) return coin;

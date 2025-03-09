@@ -4,6 +4,7 @@ import {
   CryptoWalletResponseType,
 } from "@/app/components/js/dataTypes";
 import getAllMarketPrice, {
+  getCandleData,
   getChartData,
   getCoinPrice,
 } from "@/app/components/js/marketdata";
@@ -48,10 +49,16 @@ export async function GET(
       _id: wall._id,
     };
 
-    const chart = await getChartData(foundCoin.ref, 91);
-    const prices = chart.prices.map((price) => {
-      price[1] = price[1] * foundCoin.currentPrice;
-      return price;
+    const chart = await getCandleData(marketCoin.symbol, 1);
+    const prices = chart.map((candle) => {
+      const value: number[] = [];
+      value[0] = candle.TIMESTAMP;
+      value[1] = candle.OPEN * foundCoin.currentPrice;
+      value[2] = candle.HIGH * foundCoin.currentPrice;
+      value[3] = candle.LOW * foundCoin.currentPrice;
+      value[4] = candle.CLOSE * foundCoin.currentPrice;
+
+      return value;
     });
 
     return new NextResponse(
