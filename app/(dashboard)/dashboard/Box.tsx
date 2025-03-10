@@ -130,7 +130,7 @@ const Box: React.FC<{
             <Image src={"/logo.svg"} fill alt="" />
           </Link>
           <h1>{`WELCOME ${user?.username.toUpperCase()}`}</h1>
-          <h1>{COMPANYNAME} DASHBAORD</h1>
+          {/* <h1>{COMPANYNAME} DASHBAORD</h1> */}
         </div>
 
         <div
