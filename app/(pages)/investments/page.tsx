@@ -12,7 +12,7 @@ const fetchData = async () => {
     return [];
   }
 };
-
+export const revalidate = 60;
 export default async function Page() {
   const pl = (await fetchData()) as InvestmentPlanResponseType[];
   const plans = pl || [];
@@ -22,7 +22,6 @@ export default async function Page() {
       "We empower you to take control of your financial future through our diversified investment portfolio. Discover how you can potentially grow your wealth by investing with us.",
       "At Amber Trade, we combine expertise, innovation, and a commitment to excellence to offer you success-proven investment opportunities.",
     ],
-   
   };
   const texts: { title: string; texts: string[] }[] = [
     {
@@ -61,7 +60,7 @@ export default async function Page() {
         "Amber Trade focuses on sustainable projects with long-term growth potential. Our emphasis on investing in properties that offer value appreciation and stable returns ensures that our clients benefit from a resilient and diversified investment portfolio.",
       ],
     },
-   
+
     {
       title: "Where you come in",
       texts: [
@@ -106,26 +105,41 @@ export default async function Page() {
                       {`${(
                         (plan.interest * 100) /
                         plan.duration
-                      ).toLocaleString("USA")}%`}
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}%`}
                     </p>
                     <span>Daily Profit</span>
                   </div>
                   <span className={styles.name}>{plan.name.toUpperCase()}</span>
                   <ShowText
                     name="Minimum Deposit"
-                    value={`$${plan.minimum.toLocaleString("USA")}`}
+                    value={`$${plan.minimum.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}`}
                   />
                   <ShowText
                     name="Maximum Deposit"
-                    value={`$${plan.maximum.toLocaleString("USA")}`}
+                    value={`$${plan.maximum.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}`}
                   />
                   <ShowText
                     name="Contract Duration"
-                    value={`${plan.duration.toLocaleString("USA")} Day(s)`}
+                    value={`${plan.duration.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })} Day(s)`}
                   />
                   <ShowText
                     name="Referral Bonus"
-                    value={`${plan.refCommission.toLocaleString("USA")}%`}
+                    value={`${plan.refCommission.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}%`}
                   />
                   <Link
                     href={"/dashboard/invesments/invest"}
@@ -144,23 +158,35 @@ export default async function Page() {
                       {`${(
                         (plan.interest * 100) /
                         plan.duration
-                      ).toLocaleString("USA")}%`}
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}%`}
                     </p>
                     <span>Daily Profit</span>
                   </div>
                   <span className={styles.name}>{plan.name.toUpperCase()}</span>
                   <ShowText
                     name="Minimum Deposit"
-                    value={`$${plan.minimum.toLocaleString("USA")}`}
+                    value={`$${plan.minimum.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}`}
                   />
                   <ShowText
                     name="Maximum Deposit"
-                    value={`$${plan.maximum.toLocaleString("USA")}`}
+                    value={`$${plan.maximum.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}`}
                   />
                   <ShowText name="Contract Duration" value={`Life Time`} />
                   <ShowText
                     name="Referral Bonus"
-                    value={`${plan.refCommission.toLocaleString("USA")}%`}
+                    value={`${plan.refCommission.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}%`}
                   />
                   <Link
                     href={"/dashboard/invesments/invest"}

@@ -15,7 +15,7 @@ const Calculator: React.FC<{ plans: InvestmentPlanResponseType[] }> = ({
       );
       return sel;
     });
-  }, [amount]);
+  }, [amount, plans]);
   return (
     <div className={styles.calculator}>
       <p>Plan calculator</p>
@@ -39,7 +39,10 @@ const Calculator: React.FC<{ plans: InvestmentPlanResponseType[] }> = ({
         {selPlan == null ? (
           <span className={styles.error}>
             Our Investment plans starts from $
-            {plans[0]?.minimum.toLocaleString("USA")}
+            {plans[0]?.minimum.toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
           </span>
         ) : (
           <div className={styles.cal}>
@@ -56,14 +59,21 @@ const Calculator: React.FC<{ plans: InvestmentPlanResponseType[] }> = ({
               <span>Interest Rate</span>
               <span>
                 {((selPlan.interest * 100) / selPlan.duration).toLocaleString(
-                  "USA"
+                  "en-US",
+                  { minimumFractionDigits: 2, maximumFractionDigits: 2 }
                 )}
                 % daily
               </span>
             </div>
             <div className={styles.text}>
               <span>Total Interest</span>
-              <span>{(selPlan.interest * 100).toLocaleString("USA")}%</span>
+              <span>
+                {(selPlan.interest * 100).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+                %
+              </span>
             </div>
             <div className={styles.text}>
               <span>Daily Interest</span>
@@ -72,17 +82,30 @@ const Calculator: React.FC<{ plans: InvestmentPlanResponseType[] }> = ({
                 {(
                   (selPlan.interest * amount) /
                   selPlan.duration
-                ).toLocaleString("USA")}
+                ).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
               </span>
             </div>
             <div className={styles.text}>
               <span>Total Interest</span>
-              <span>${(selPlan.interest * amount).toLocaleString("USA")}</span>
+              <span>
+                $
+                {(selPlan.interest * amount).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
             </div>
             <div className={styles.text}>
               <span>Total ROI</span>
               <span>
-                ${(selPlan.interest * amount + amount).toLocaleString("USA")}
+                $
+                {(selPlan.interest * amount + amount).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
               </span>
             </div>
           </div>

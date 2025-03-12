@@ -10,11 +10,10 @@ const fetchData = async () => {
     return [];
   }
 };
-
+export const revalidate = 60;
 export default async function Page() {
   const plans = await fetchData();
   const data: TopperType = {
-   
     text: ["Calculate your investment returns here"],
     title: "Plan Calculator",
   };
