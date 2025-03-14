@@ -77,13 +77,16 @@ export default function Body({
       <div className={styles.left}>
         <div className={styles.allActions}>
           <Link href={"/dashboard/crypto/manage/wallets"} className="action">
-            Manage Wallets
+            Wallets
           </Link>
           <Link
             href={"/dashboard/crypto/manage/transactions"}
             className="action"
           >
-            Manage Orderbook
+            Orderbook
+          </Link>
+          <Link href={"/dashboard/crypto/manage/funding"} className="action">
+            Funding
           </Link>
         </div>
         <h1>Create Token</h1>

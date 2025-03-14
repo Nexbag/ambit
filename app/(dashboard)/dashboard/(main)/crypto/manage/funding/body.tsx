@@ -1,38 +1,39 @@
 "use client";
-import { CryptoOrderBookResponseType } from "@/app/components/js/dataTypes";
+import { WalletTranzResponseType } from "@/app/components/js/dataTypes";
 import styles from "./styles.module.scss";
 
 import { useState } from "react";
 
 import Paginate from "@/app/components/js/pager/Paginate";
 import {
-  cryptoOrderBookUrl,
+  cryptoTransactionUrl,
   dateValue,
   sixFrac,
+  twoFrac,
 } from "@/app/components/js/config";
-import { RiExchangeFill } from "react-icons/ri";
+
 import { putRequest } from "@/app/components/js/api_client";
 import { useUserContext } from "@/app/components/js/Wrapper";
 import showMessage from "@/app/components/js/showError";
 import Spinner from "@/app/components/js/spinner/Spinner";
 
 export default function Body({
-  orders,
+  transactions,
 }: {
-  orders: CryptoOrderBookResponseType[];
+  transactions: WalletTranzResponseType[];
 }) {
   const context = useUserContext();
   const user = context?.user;
-  const [pageOrders, setPageOrders] = useState<CryptoOrderBookResponseType[]>(
-    []
-  );
-  const [allOrders, setAllOrders] =
-    useState<CryptoOrderBookResponseType[]>(orders);
+  const [pageTrans, setPageTrans] = useState<WalletTranzResponseType[]>([]);
+  const [allTrans, setAllTrans] =
+    useState<WalletTranzResponseType[]>(transactions);
 
   const [message, setMessage] = useState<string>("");
 
   async function filterOrders(username: string) {
-    setAllOrders(() => orders.filter((e) => e.username.includes(username)));
+    setAllTrans(() =>
+      transactions.filter((e) => e.username.includes(username))
+    );
   }
   function formatDateTimeLocal(dateVal: number) {
     const date = new Date(dateVal);
@@ -44,16 +45,10 @@ export default function Body({
 
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   }
-  async function handleOrder(id: string) {
+  async function handleTran(id: string) {
     setMessage("Please wait...");
 
-    const basePrice = document.getElementById(
-      `${id}baseprice`
-    ) as HTMLInputElement;
-    const newPrice = document.getElementById(
-      `${id}newprice`
-    ) as HTMLInputElement;
-    const baseQty = document.getElementById(`${id}baseqty`) as HTMLInputElement;
+    const qtyCont = document.getElementById(`${id}qty`) as HTMLInputElement;
     const date = document.getElementById(`${id}date`) as HTMLInputElement;
 
     function makeFloat(container: HTMLInputElement) {
@@ -61,14 +56,14 @@ export default function Body({
       return value;
     }
     const dateVal = new Date(date.value).getTime();
-
+    const newQty = makeFloat(qtyCont);
+    const found = transactions.find((e) => e._id == id)!;
+    const diff = newQty - found.qty;
     const { data, message } = await putRequest(
-      `${cryptoOrderBookUrl}${id}`,
+      `${cryptoTransactionUrl}${id}`,
       {
-        basePrice: makeFloat(basePrice),
-        newPrice: makeFloat(newPrice),
-        baseQty: makeFloat(baseQty),
         date: dateVal,
+        qty: diff,
       },
       user?.token
     );
@@ -90,19 +85,17 @@ export default function Body({
             onChange={(e) => filterOrders(e.target.value)}
           />
         </div>
-        <h1>Trading History</h1>
+        <h1>Wallet History</h1>
         <div className={styles.column}>
-          {pageOrders.map((e) => (
+          {pageTrans.map((e) => (
             <div key={e._id} className={styles.orderBox}>
               <div className={styles.order}>
                 <div className={styles.details}>
                   <div className={styles.title}>
-                    <span>{`${sixFrac(e.baseQty)} ${e.baseCoin} @ ${sixFrac(
-                      e.basePrice
-                    )}`}</span>
-                    <RiExchangeFill />
-                    <span>{`${sixFrac(e.newQty)} ${e.newCoin} @ ${sixFrac(
-                      e.newPrice
+                    <span>{`${e.username}: ${
+                      e.type == 1 ? "Funding " : "Withdrawal "
+                    } ${sixFrac(e.qty)} ${e.coin} @ ${twoFrac(
+                      e.amount
                     )}`}</span>
                   </div>
                   <p className={styles.date}>{dateValue(e.date)}</p>
@@ -110,27 +103,11 @@ export default function Body({
               </div>
               <div className={styles.mod}>
                 <div>
-                  <label>{`${e.baseCoin} New Price`}</label>
+                  <label>{`${e.coin} Qty`}</label>
                   <input
                     type="number"
-                    id={`${e._id}baseprice`}
-                    defaultValue={e.basePrice}
-                  />
-                </div>
-                <div>
-                  <label>{`${e.baseCoin} Qty`}</label>
-                  <input
-                    type="number"
-                    id={`${e._id}baseqty`}
-                    defaultValue={e.baseQty}
-                  />
-                </div>
-                <div>
-                  <label>{`${e.newCoin} New Price`}</label>
-                  <input
-                    type="number"
-                    id={`${e._id}newprice`}
-                    defaultValue={e.newPrice}
+                    id={`${e._id}qty`}
+                    defaultValue={e.qty}
                   />
                 </div>
                 <div>
@@ -143,7 +120,7 @@ export default function Body({
                 </div>
                 <span
                   className={`action ${styles.action}`}
-                  onClick={() => handleOrder(e._id)}
+                  onClick={() => handleTran(e._id)}
                 >
                   Modify
                 </span>
@@ -151,7 +128,7 @@ export default function Body({
             </div>
           ))}
         </div>
-        <Paginate data={allOrders} setData={setPageOrders} />
+        <Paginate data={allTrans} setData={setPageTrans} />
       </div>
       {message && <Spinner error={message} />}
     </div>
